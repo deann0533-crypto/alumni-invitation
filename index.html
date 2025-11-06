@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동문회 초대장</title>
+    <style>
+        :root {
+            --color-primary: #2c5f6f;
+            --color-primary-light: #3a7a8c;
+            --color-accent: #d4a574;
+            --color-text: #2d3436;
+            --color-text-light: #636e72;
+            --color-bg: #fafafa;
+            --color-white: #ffffff;
+            --color-border: #e1e8ed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .invitation-text {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid var(--color-accent);
+            line-height: 1.8;
+            color: var(--color-text);
+            font-size: 15px;
+        }
+
+        .info-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f3f5;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-item:first-child {
+            padding-top: 0;
+        }
+
+        .info-label {
+            min-width: 70px;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 14px;
+        }
+
+        .info-value {
+            flex: 1;
+            color: var(--color-text);
+            font-size: 14px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 15px;
+            background: #f0f3f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: 14px;
+            border: 1px solid var(--color-border);
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--color-white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(44, 95, 111, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 95, 111, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 111, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            color: var(--color-text-light);
+            font-size: 13px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--color-border) 50%, transparent 100%);
+            margin: 30px 0;
+        }
+
+        .customize-section {
+            background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px dashed var(--color-accent);
+            margin-bottom: 25px;
+        }
+
+        .customize-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .color-picker-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .color-picker-item {
+            flex: 1;
+        }
+
+        .color-picker-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+                margin: 0;
+            }
+            
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="header">
+            <div class="header-content">
+                <div class="badge">Alumni Reunion</div>
+                <h1 id="eventTitle">OO대학교 동문회</h1>
+                <p class="subtitle">따뜻한 만남의 초대</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 디자인 커스터마이징 섹션 -->
+            <div class="customize-section">
+                <div class="customize-title">🎨 초대장 디자인 커스터마이징</div>
+                <div class="form-group">
+                    <label class="form-label">행사명</label>
+                    <input type="text" id="customEventTitle" class="form-control" placeholder="예: OO대학교 2025 동문회" value="OO대학교 동문회">
+                </div>
+                <div class="color-picker-group">
+                    <div class="color-picker-item">
+                        <label class="color-picker-label">메인 컬러</label>
+                        <input type="color" id="primaryColor" value="#2c5f6f">
+                    </div>
+                    <div class="color-picker-item">
+                        <label class="color-picker-label">포인트 컬러</label>
+                        <input type="color" id="accentColor" value="#d4a574">
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="applyCustomization()">디자인 적용</button>
+            </div>
+
+            <!-- 초대 인사말 -->
+            <div class="section">
+                <h2 class="section-title">초대의 글</h2>
+                <div class="invitation-text" id="invitationText" contenteditable="true">
+                    친애하는 동문 여러분,<br><br>
+                    세월이 흘러도 변치 않는 우리의 우정과 추억을 함께 나누고자 동문회를 개최합니다. 
+                    바쁘신 일정 속에서도 잠시 시간을 내어 그리운 얼굴들을 만나고, 
+                    즐거운 이야기를 나누는 뜻깊은 자리가 되었으면 합니다.<br><br>
+                    여러분의 참석을 간곡히 부탁드립니다.
+                </div>
+                <p style="text-align: right; margin-top: 15px; color: var(--color-text-light); font-size: 14px;">
+                    ✏️ 위 텍스트를 직접 수정할 수 있습니다
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 행사 정보 -->
+            <div class="section">
+                <h2 class="section-title">행사 정보</h2>
+                <div class="info-card">
+                    <div class="info-item">
+                        <div class="info-label">일시</div>
+                        <div class="info-value" contenteditable="true">2025년 12월 14일 (토) 오후 6시</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">장소</div>
+                        <div class="info-value" contenteditable="true">더 플라자 호텔 3층 그랜드볼룸</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">주소</div>
+                        <div class="info-value" contenteditable="true">서울특별시 중구 소공로 119</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">회비</div>
+                        <div class="info-value" contenteditable="true">1인 50,000원</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">문의</div>
+                        <div class="info-value" contenteditable="true">동문회 사무국 02-1234-5678</div>
+                    </div>
+                </div>
+                <p style="text-align: right; margin-top: 10px; color: var(--color-text-light); font-size: 13px;">
+                    ✏️ 각 항목을 클릭하여 수정 가능
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 오시는 길 -->
+            <div class="section">
+                <h2 class="section-title">오시는 길</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.2319523174624!2d126.925737940457!3d37.526029172165515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f396c39fd5b%3A0x774f6852a6d5290b!2z7Iqk7JyE7LnYMjLrsJTsnbTqt7jroIjsnbTtlIQ!5e0!3m2!1sko!2skr!4v1762413212977!5m2!1sko!2skr" 
+                    width="100%" 
+                    height="220" 
+                    style="border:0; border-radius:12px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <button class="btn btn-secondary" style="margin-top: 15px;" onclick="openMap()">
+                    🗺️ 지도 앱으로 보기
+                </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 참석 신청 폼 -->
+            <div class="section">
+                <h2 class="section-title">참석 신청</h2>
+                <div class="form-section">
+                    <form id="rsvpForm" onsubmit="submitRSVP(event)">
+                        <div class="form-group">
+                            <label class="form-label">이름 *</label>
+                            <input type="text" class="form-control" name="name" required placeholder="홍길동">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">졸업년도 *</label>
+                            <input type="text" class="form-control" name="graduationYear" required placeholder="예: 2008년 / 08학번">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">연령대 *</label>
+                            <select name="ageGroup" class="form-control" required>
+                                <option value="">연령대를 선택해주세요</option>
+                                <option value="20-24">만 20~24세</option>
+                                <option value="25-29">만 25~29세</option>
+                                <option value="30-34">만 30~34세</option>
+                                <option value="35-39">만 35~39세</option>
+                                <option value="40-44">만 40~44세</option>
+                                <option value="45-49">만 45~49세</option>
+                                <option value="50+">만 50세 이상</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">전공 *</label>
+                            <input type="text" class="form-control" name="major" required placeholder="예: 경영학과, 컴퓨터공학과">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">이메일 *</label>
+                            <input type="email" class="form-control" name="email" required placeholder="example@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">연락처 *</label>
+                            <input type="tel" class="form-control" name="phone" required placeholder="010-1234-5678">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">참가비 입금 여부 *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="paymentStatus" value="paid" required>
+                                    입금 완료
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="paymentStatus" value="will-pay">
+                                    당일 납부 예정
+                                </label>
+                            </div>
+                            <div style="margin-top: 10px; padding: 12px; background: #f0f8ff; border-radius: 8px; font-size: 13px; color: #0066cc; border: 1px solid #e6f3ff;">
+                                💳 <strong>입금 계좌:</strong> 국민은행 123-45-678910 (예금주: 동문회)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">오시는 경로 *</label>
+                            <div class="radio-group" style="flex-direction: column; gap: 10px;">
+                                <label class="radio-label">
+                                    <input type="radio" name="transportation" value="public" required onchange="toggleCarNumber()">
+                                    대중교통
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="transportation" value="car" onchange="toggleCarNumber()">
+                                    자차
+                                </label>
+                                <label class="radio-label" style="align-items: flex-start;">
+                                    <input type="radio" name="transportation" value="other" onchange="toggleCarNumber()" style="margin-top: 5px;">
+                                    <div style="flex: 1;">
+                                        기타
+                                        <input type="text" class="form-control" name="transportationOther" placeholder="직접 입력해주세요" style="margin-top: 8px; font-size: 14px;" disabled>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="carNumberGroup" style="display: none;">
+                            <label class="form-label">차량번호</label>
+                            <input type="text" class="form-control" name="carNumber" placeholder="예: 12가3456">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">참석 신청하기</button>
+                    </form>
+
+                    <div id="successMessage" class="success-message">
+                        <strong>✅ 신청이 완료되었습니다!</strong>
+                        <p style="margin-top: 8px; font-size: 14px;">
+                            행사 당일 뵙겠습니다. 감사합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 12px; font-size: 13px; color: #856404; border: 1px solid #ffeaa7;">
+                    💡 <strong>참고:</strong> 실제 운영 시에는 Google Forms, Typeform, 또는 자체 서버로 데이터를 전송할 수 있습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>이 초대장의 모든 내용은 수정 가능합니다</p>
+            <p style="margin-top: 8px;">OO대학교 동문회 사무국</p>
+        </div>
+    </div>
+
+    <script>
+        // 디자인 커스터마이징 적용
+        function applyCustomization() {
+            const title = document.getElementById('customEventTitle').value;
+            const primaryColor = document.getElementById('primaryColor').value;
+            const accentColor = document.getElementById('accentColor').value;
+
+            // 제목 변경
+            if (title) {
+                document.getElementById('eventTitle').textContent = title;
+            }
+
+            // 색상 변경
+            document.documentElement.style.setProperty('--color-primary', primaryColor);
+            document.documentElement.style.setProperty('--color-primary-light', adjustBrightness(primaryColor, 20));
+            document.documentElement.style.setProperty('--color-accent', accentColor);
+
+            // 성공 알림
+            alert('✨ 디자인이 적용되었습니다!');
+        }
+
+        // 색상 밝기 조절 함수
+        function adjustBrightness(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255))
+                .toString(16).slice(1);
+        }
+
+        // 지도 열기
+        function openMap() {
+            const placeName = "스위치22";
+            const kakaoMapUrl = `https://map.kakao.com/link/search/${encodeURIComponent(placeName)}`;
+            const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(placeName)}`;
+            
+            if (confirm('지도 앱을 선택해주세요\n\n확인: 카카오맵\n취소: 네이버지도')) {
+                window.open(kakaoMapUrl, '_blank');
+            } else {
+                window.open(naverMapUrl, '_blank');
+            }
+        }
+
+        // 교통수단 선택에 따른 차량번호 입력 필드 토글
+        function toggleCarNumber() {
+            const transportation = document.querySelector('input[name="transportation"]:checked');
+            const carNumberGroup = document.getElementById('carNumberGroup');
+            const carNumberInput = document.querySelector('input[name="carNumber"]');
+            const otherInput = document.querySelector('input[name="transportationOther"]');
+            
+            // 모든 추가 입력 필드 초기화
+            otherInput.disabled = true;
+            otherInput.value = '';
+            carNumberInput.required = false;
+            carNumberGroup.style.display = 'none';
+            
+            if (transportation) {
+                if (transportation.value === 'car') {
+                    carNumberGroup.style.display = 'block';
+                    carNumberInput.required = true;
+                } else if (transportation.value === 'other') {
+                    otherInput.disabled = false;
+                }
+            }
+        }
+
+        // 참석 신청 제출 (구글폼 자동 전송)
+        function submitRSVP(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            
+            // 구글폼 URL
+            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdjM1yC9Y_Vjp3wHbWFum47AF-fcDROZGrrapNJQxCTWFuduk/formResponse';
+            
+            // Entry ID 매칭하여 데이터 준비
+            const params = new URLSearchParams({
+                'entry.1776982355': formData.get('name'),           // 이름
+                'entry.135559394': formData.get('graduationYear'),  // 졸업년도
+                'entry.1125837632': formData.get('ageGroup'),       // 연령대
+                'entry.907944483': formData.get('major'),           // 전공
+                'entry.384771722': formData.get('email'),           // 이메일
+                'entry.1693559829': formData.get('phone'),          // 연락처
+                'entry.1500214709': formData.get('paymentStatus'),  // 참가비 입금 여부
+                'entry.1130148191': formData.get('transportation'), // 오시는 경로
+                'entry.50182719': formData.get('transportationOther'), // 기타 교통수단
+                'entry.1498234751': formData.get('carNumber')       // 차량번호
+            });
+
+            // 구글폼으로 데이터 전송 (CORS 우회)
+            fetch(googleFormUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: params
+            }).then(() => {
+                // 성공 메시지 표시
+                document.getElementById('successMessage').classList.add('show');
+                event.target.reset();
+                
+                // 콘솔에 전송된 데이터 로그
+                console.log('구글폼으로 전송된 데이터:', Object.fromEntries(params));
+
+                // 5초 후 메시지 숨기기
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+            }).catch((error) => {
+                console.error('전송 오류:', error);
+                alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+            });
+        }
+
+        // 로컬 스토리지에 신청 정보 저장 (선택사항)
+        function saveToLocalStorage(data) {
+            const existingData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
+            existingData.push({
+                ...data,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('rsvpData', JSON.stringify(existingData));
+        }
+    </script>
+</body>
+</html>
+
