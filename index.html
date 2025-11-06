@@ -1,608 +1,171 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iowa Club Korea 2025</title>
-    <style>
-        :root {
-            /* Primitive Color Tokens */
-            --color-white: rgba(255, 255, 255, 1);
-            --color-black: rgba(0, 0, 0, 1);
-            --color-cream-50: rgba(252, 252, 249, 1);
-            --color-cream-100: rgba(255, 255, 253, 1);
-            --color-gray-200: rgba(245, 245, 245, 1);
-            --color-gray-300: rgba(167, 169, 169, 1);
-            --color-gray-400: rgba(119, 124, 124, 1);
-            --color-slate-500: rgba(98, 108, 113, 1);
-            --color-brown-600: rgba(94, 82, 64, 1);
-            --color-charcoal-700: rgba(31, 33, 33, 1);
-            --color-charcoal-800: rgba(38, 40, 40, 1);
-            --color-slate-900: rgba(19, 52, 59, 1);
-            --color-teal-300: rgba(50, 184, 198, 1);
-            --color-teal-400: rgba(45, 166, 178, 1);
-            --color-teal-500: rgba(33, 128, 141, 1);
-            --color-teal-600: rgba(29, 116, 128, 1);
-            --color-teal-700: rgba(26, 104, 115, 1);
-            --color-teal-800: rgba(41, 150, 161, 1);
-            --color-red-400: rgba(255, 84, 89, 1);
-            --color-red-500: rgba(192, 21, 47, 1);
-            --color-orange-400: rgba(230, 129, 97, 1);
-            --color-orange-500: rgba(168, 75, 47, 1);
-
-            /* Semantic colors */
-            --color-primary: var(--color-teal-500);
-            --color-primary-light: var(--color-teal-300);
-            --color-text: var(--color-slate-900);
-            --color-text-light: var(--color-slate-500);
-            --color-bg: var(--color-cream-50);
-            --color-card-bg: var(--color-white);
-            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-bg);
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #f4c430 0%, #f7d954 100%);
-            color: #2d3436;
-            padding: 50px 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            animation: float 20s infinite linear;
-            opacity: 0.3;
-        }
-
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .invitation {
-            padding: 40px 30px;
-        }
-
-        .invitation-text {
-            background: var(--color-card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            border: 1px solid var(--color-border);
-            margin-bottom: 30px;
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--color-text);
-        }
-
-        .event-info {
-            background: var(--color-card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            border: 1px solid var(--color-border);
-            margin-bottom: 30px;
-        }
-
-        .event-info h2 {
-            font-size: 20px;
-            color: var(--color-primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .info-item {
-            display: flex;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-weight: 600;
-            width: 60px;
-            flex-shrink: 0;
-            color: var(--color-primary);
-        }
-
-        .info-value {
-            flex: 1;
-            color: var(--color-text);
-            padding-left: 15px;
-        }
-
-        .map-section {
-            background: var(--color-card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            border: 1px solid var(--color-border);
-            margin-bottom: 30px;
-        }
-
-        .map-section h2 {
-            font-size: 20px;
-            color: var(--color-primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .map-container {
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-
-        .map-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--color-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-
-        .map-button:hover {
-            background: var(--color-teal-600);
-        }
-
-        .rsvp-section {
-            background: var(--color-card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            border: 1px solid var(--color-border);
-            margin-bottom: 30px;
-        }
-
-        .rsvp-section h2 {
-            font-size: 20px;
-            color: var(--color-primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--color-text);
-            font-size: 14px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.2s;
-            background: white;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--color-primary);
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .radio-item input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-primary);
-        }
-
-        .radio-item label {
-            font-size: 14px;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .submit-btn:hover {
-            background: var(--color-teal-600);
-        }
-
-        .submit-btn:active {
-            transform: translateY(1px);
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-            font-weight: 600;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .footer {
-            background: var(--color-primary);
-            color: white;
-            text-align: center;
-            padding: 30px;
-            font-size: 14px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: 0;
-            }
-
-            .header {
-                padding: 40px 20px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .invitation, .map-section, .rsvp-section, .event-info {
-                padding: 20px;
-                margin: 0 15px 20px;
-            }
-
-            .info-item {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            .info-label {
-                width: auto;
-                margin-bottom: 5px;
-            }
-
-            .info-value {
-                padding-left: 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iowa Club Korea 2025</title>
+  <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 id="eventTitle">Iowa Club Korea 2025</h1>
-            <p>따뜻한 만남의 자리</p>
-        </header>
+  <div class="container">
+    <header class="header">
+      <!-- 헤더 상단 이미지 (동일 폴더: assets/images/test.jpg) -->
+      <img class="header-logo" src="./assets/images/test.jpg" alt="Iowa Club Korea 로고" loading="eager" decoding="async"/>
+      <h1 id="eventTitle">Iowa Club Korea 2025</h1>
+      <p>따뜻한 만남의 자리</p>
+    </header>
 
-        <section class="invitation">
-            <div class="invitation-text" id="invitationText">
-                <p><strong>안녕하세요 동문 여러분,</strong></p>
-                <br>
-                <p>세월이 흘러도 변치 않는 우리의 우정과 추억을 함께 나누고자 동문회를 개최합니다. 바쁘신 일상 속에서도 잠시 시간을 내어 추억을 나누어보는 자리가 되었으면 합니다.</p>
-                <br>
-                <p>많은 참여 부탁드립니다.</p>
-                <br>
-                <p style="text-align: right; font-weight: 600;">Iowa Club Korea</p>
-            </div>
-        </section>
+    <!-- 초대문 -->
+    <section class="invitation">
+      <div class="invitation-text" id="invitationText">
+        <p><strong>안녕하세요 동문 여러분,</strong></p>
+        <br/>
+        <p>세월이 흘러도 변치 않는 우리의 우정과 추억을 함께 나누고자 동문회를 개최합니다. 바쁘신 일상 속에서도 잠시 시간을 내어 추억을 나누어보는 자리가 되었으면 합니다.</p>
+        <br/>
+        <p>많은 참여 부탁드립니다.</p>
+        <br/>
+        <p style="text-align:right;font-weight:600;">Iowa Club Korea</p>
+      </div>
+    </section>
 
-        <section class="event-info">
-            <h2>📅 행사 정보</h2>
-            <div class="info-item">
-                <div class="info-label">일시</div>
-                <div class="info-value">2025년 12월 12일 (금) 오후 6시 30분</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">장소</div>
-                <div class="info-value">여의도 파크원 타워2 스위치22</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">주소</div>
-                <div class="info-value">서울특별시 영등포구 여의대로 108 파크원 타워2 22층</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">회비</div>
-                <div class="info-value">1인 50,000원</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">문의</div>
-                <div class="info-value">이환석 (010-8967-4981)</div>
-            </div>
-        </section>
+    <!-- 행사 정보 -->
+    <section class="event-info">
+      <h2>📅 행사 정보</h2>
+      <div class="info-item">
+        <div class="info-label">일시</div>
+        <div class="info-value">2025년 12월 12일 (금) 오후 6시 30분</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">장소</div>
+        <div class="info-value">여의도 파크원 타워2 스위치22</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">주소</div>
+        <div class="info-value">서울특별시 영등포구 여의대로 108 파크원 타워2 22층</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">회비</div>
+        <div class="info-value">1인 50,000원</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">문의</div>
+        <div class="info-value">이환석 (010-8967-4981)</div>
+      </div>
+    </section>
 
-        <section class="map-section">
-            <h2>🗺️ 오시는 길</h2>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.2319523174624!2d126.925737940457!3d37.526029172165515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f396c39fd5b%3A0x774f6852a6d5290b!2z7Iqk7JyI7LmYMjLrsJTsnbTqt7jroIjsnbTtlIQ!5e0!3m2!1sko!2skr!4v1762413212977!5m2!1sko!2skr" width="100%" height="220" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <a href="#" class="map-button" onclick="openMap()">📍 지도 앱으로 보기</a>
-        </section>
+    <!-- 지도 -->
+    <section class="map-section">
+      <h2>🗺️ 오시는 길</h2>
+      <div class="map-container">
+        <iframe
+          title="파크원 스위치22 위치"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.2319523174624!2d126.925737940457!3d37.526029172165515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9f396c39fd5b%3A0x774f6852a6d5290b!2z7Iqk7JyI7LmYMjLrsJTsnbTqt7jroIjsnbTtlIQ!5e0!3m2!1sko!2skr!4v1762413212977!5m2!1sko!2skr"
+          width="100%" height="220" style="border:0; border-radius:12px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <a href="#" class="map-button" id="openMapBtn">📍 지도 앱으로 보기</a>
+    </section>
 
-        <section class="rsvp-section" id="rsvp">
-            <h2>📋 참석 신청</h2>
-            <form id="rsvp-form" onsubmit="submitRSVP(event)">
-                <div class="form-group">
-                    <label class="form-label" for="name">이름 *</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="graduationYear">졸업년도 *</label>
-                    <input type="text" id="graduationYear" name="graduationYear" class="form-control" placeholder="예: 2020" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">연령대 *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="age20" name="ageGroup" value="만 20~24세" required>
-                            <label for="age20">만 20~24세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age25" name="ageGroup" value="만 25~29세">
-                            <label for="age25">만 25~29세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age30" name="ageGroup" value="만 30~34세">
-                            <label for="age30">만 30~34세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age35" name="ageGroup" value="만 35~39세">
-                            <label for="age35">만 35~39세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age40" name="ageGroup" value="만 40~44세">
-                            <label for="age40">만 40~44세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age45" name="ageGroup" value="만 45~49세">
-                            <label for="age45">만 45~49세</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="age50" name="ageGroup" value="만 50세 이상">
-                            <label for="age50">만 50세 이상</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="major">전공 *</label>
-                    <input type="text" id="major" name="major" class="form-control" placeholder="예: 경영학과" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="email">이메일 *</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="phone">연락처 *</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="01012345678" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">참가비 입금 여부 *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="paid" name="payment" value="입금 완료" required>
-                            <label for="paid">입금 완료</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="willPay" name="payment" value="당일 납부 예정">
-                            <label for="willPay">당일 납부 예정</label>
-                        </div>
-                    </div>
-                    <div style="margin-top: 10px; padding: 12px; background: #f0f8ff; border-radius: 8px; font-size: 13px; color: #0066cc; border: 1px solid #e6f3ff;">
-                        💳 <strong>입금 계좌:</strong> 토스뱅크 이환석 1001-4865-4491
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">오시는 경로 *</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="publicTransport" name="transport" value="대중교통" onchange="toggleTransportFields()" required>
-                            <label for="publicTransport">대중교통</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="car" name="transport" value="자차" onchange="toggleTransportFields()">
-                            <label for="car">자차</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="other" name="transport" value="기타" onchange="toggleTransportFields()">
-                            <label for="other">기타</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group hidden" id="otherTransportGroup">
-                    <label class="form-label" for="transportOther">기타 교통수단</label>
-                    <input type="text" id="transportOther" name="transportOther" class="form-control" placeholder="교통수단을 입력해주세요">
-                </div>
-
-                <div class="form-group hidden" id="carNumberGroup">
-                    <label class="form-label" for="carNumber">차량번호</label>
-                    <input type="text" id="carNumber" name="carNumber" class="form-control" placeholder="예: 12가3456">
-                </div>
-
-                <button type="submit" class="submit-btn">참석 신청하기</button>
-                
-                <div id="successMessage" class="success-message">
-                    ✅ 신청이 완료되었습니다. 감사합니다!
-                </div>
-            </form>
-        </section>
-
-        <div class="footer">
-            <p style="margin-top: 8px;">Iowa Club Korea 2025</p>
+    <div id="mapModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>지도 앱을 선택해주세요</h3>
+        <div class="modal-buttons">
+          <button id="naverBtn" class="modal-btn naver">네이버</button>
+          <button id="kakaoBtn" class="modal-btn kakao">카카오</button>
+          <button id="cancelBtn" class="modal-btn cancel">취소</button>
         </div>
+      </div>
     </div>
 
-    <script>
-        function toggleTransportFields() {
-            const carRadio = document.getElementById('car');
-            const otherRadio = document.getElementById('other');
-            const carNumberGroup = document.getElementById('carNumberGroup');
-            const otherTransportGroup = document.getElementById('otherTransportGroup');
+    <!-- RSVP -->
+    <section class="rsvp-section" id="rsvp">
+      <h2>📋 참석 신청</h2>
+      <form id="rsvp-form">
+        <div class="form-group">
+          <label class="form-label" for="name">이름 *</label>
+          <input type="text" id="name" name="name" class="form-control" required/>
+        </div>
 
-            if (carRadio.checked) {
-                carNumberGroup.classList.remove('hidden');
-                otherTransportGroup.classList.add('hidden');
-            } else if (otherRadio.checked) {
-                otherTransportGroup.classList.remove('hidden');
-                carNumberGroup.classList.add('hidden');
-            } else {
-                carNumberGroup.classList.add('hidden');
-                otherTransportGroup.classList.add('hidden');
-            }
-        }
+        <div class="form-group">
+          <label class="form-label" for="graduationYear">졸업년도 *</label>
+          <input type="text" id="graduationYear" name="graduationYear" class="form-control" placeholder="예: 2020" required/>
+        </div>
 
-        function openMap() {
-            const query = encodeURIComponent('스위치22');
-            const kakaoUrl = `https://map.kakao.com/link/search/${query}`;
-            const naverUrl = `https://map.naver.com/v5/search/${query}`;
-            
-            if (confirm('지도 앱을 선택해주세요.\n확인: 카카오맵\n취소: 네이버지도')) {
-                window.open(kakaoUrl, '_blank');
-            } else {
-                window.open(naverUrl, '_blank');
-            }
-        }
+        <div class="form-group">
+          <label class="form-label">연령대 *</label>
+          <div class="radio-group">
+            <div class="radio-item"><input type="radio" id="age20" name="ageGroup" value="만 20~24세" required/><label for="age20">만 20~24세</label></div>
+            <div class="radio-item"><input type="radio" id="age25" name="ageGroup" value="만 25~29세"/><label for="age25">만 25~29세</label></div>
+            <div class="radio-item"><input type="radio" id="age30" name="ageGroup" value="만 30~34세"/><label for="age30">만 30~34세</label></div>
+            <div class="radio-item"><input type="radio" id="age35" name="ageGroup" value="만 35~39세"/><label for="age35">만 35~39세</label></div>
+            <div class="radio-item"><input type="radio" id="age40" name="ageGroup" value="만 40~44세"/><label for="age40">만 40~44세</label></div>
+            <div class="radio-item"><input type="radio" id="age45" name="ageGroup" value="만 45~49세"/><label for="age45">만 45~49세</label></div>
+            <div class="radio-item"><input type="radio" id="age50" name="ageGroup" value="만 50세 이상"/><label for="age50">만 50세 이상</label></div>
+          </div>
+        </div>
 
-        function submitRSVP(event) {
-            event.preventDefault();
+        <div class="form-group">
+          <label class="form-label" for="major">전공 *</label>
+          <input type="text" id="major" name="major" class="form-control" placeholder="예: 경영학과" required/>
+        </div>
 
-            const form = event.target;
-            const formData = new FormData(form);
+        <div class="form-group">
+          <label class="form-label" for="email">이메일 *</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required/>
+        </div>
 
-            // 구글폼 URL과 Entry ID들
-            const googleFormUrl = 'https://docs.google.com/forms/d/1c9Y_Vjp3wHbWFum47AF-fcDROZGrrapNJQxCTWFuduk/formResponse';
-            
-            const params = new URLSearchParams({
-                'entry.1776982355': formData.get('name'),
-                'entry.1355659894': formData.get('graduationYear'),
-                'entry.1130149190': formData.get('ageGroup'),
-                'entry.1725897632': formData.get('major'),
-                'entry.907944483': formData.get('email'),
-                'entry.384771722': formData.get('phone'),
-                'entry.148829751': formData.get('payment'),
-                'entry.1578977719': formData.get('transport'),
-                'entry.659569829': formData.get('transportOther') || '',
-                'entry.1500214709': formData.get('carNumber') || ''
-            });
+        <div class="form-group">
+          <label class="form-label" for="phone">연락처 *</label>
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="01012345678" required/>
+        </div>
 
-            // 구글폼으로 데이터 전송 (CORS 우회)
-            fetch(googleFormUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: params
-            }).then(() => {
-                // 성공 메시지 표시
-                form.reset();
-                document.getElementById('successMessage').classList.add('show');
-                setTimeout(() => {
-                    document.getElementById('successMessage').classList.remove('show');
-                }, 3000);
-            }).catch((error) => {
-                console.error('Error:', error);
-                alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-            });
-        }
-    </script>
+        <div class="form-group">
+          <label class="form-label">참가비 입금 여부 *</label>
+          <div class="radio-group">
+            <div class="radio-item"><input type="radio" id="paid" name="payment" value="입금 완료" required/><label for="paid">입금 완료</label></div>
+            <div class="radio-item"><input type="radio" id="willPay" name="payment" value="당일 납부 예정"/><label for="willPay">당일 납부 예정</label></div>
+          </div>
+        <div class="bank-info">
+          <span id="bankAccountText">💳 <strong>입금 계좌:</strong> 토스뱅크 이환석 <span class="account-number">1001-4865-4491</span></span>
+          <button id="copyAccountBtn" class="copy-btn" type="button" data-account="1001-4865-4491">복사</button>
+        </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">오시는 경로 *</label>
+          <div class="radio-group">
+            <div class="radio-item"><input type="radio" id="publicTransport" name="transport" value="대중교통" required/><label for="publicTransport">대중교통</label></div>
+            <div class="radio-item"><input type="radio" id="car" name="transport" value="자차"/><label for="car">자차</label></div>
+            <div class="radio-item"><input type="radio" id="other" name="transport" value="기타"/><label for="other">기타</label></div>
+          </div>
+        </div>
+
+        <div class="form-group hidden" id="otherTransportGroup">
+          <label class="form-label" for="transportOther">기타 교통수단</label>
+          <input type="text" id="transportOther" name="transportOther" class="form-control" placeholder="교통수단을 입력해주세요"/>
+        </div>
+
+        <div class="form-group hidden" id="carNumberGroup">
+          <label class="form-label" for="carNumber">차량번호</label>
+          <input type="text" id="carNumber" name="carNumber" class="form-control" placeholder="예: 12가3456"/>
+        </div>
+
+        <button type="submit" class="submit-btn">참석 신청하기</button>
+        <div id="successMessage" class="success-message">✅ 신청이 완료되었습니다. 감사합니다!</div>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p style="margin-top:8px;">Iowa Club Korea 2025</p>
+    </footer>
+  </div>
+
+  <!-- JS: defer로 로드하여 DOM 뒤에 연결 -->
+  <script src="./assets/js/script.js" defer></script>
 </body>
 </html>
