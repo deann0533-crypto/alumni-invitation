@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 최초 로드시 숨김 상태 보정
   toggleTransportFields();
 
+  // 계좌번호 복사 버튼
   const copyBtn = document.getElementById("copyAccountBtn");
   copyBtn?.addEventListener("click", async () => {
     const account = copyBtn.dataset.account || document.querySelector(".account-number")?.textContent?.trim();
@@ -54,9 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1200);
     }
   });
-
 });
 
+/* =========================================================
+   교통수단 라디오에 따른 입력 필드 토글
+   ========================================================= */
 function toggleTransportFields() {
   const carRadio = document.getElementById("car");
   const otherRadio = document.getElementById("other");
@@ -77,6 +80,9 @@ function toggleTransportFields() {
   }
 }
 
+/* =========================================================
+   지도 앱 선택 모달
+   ========================================================= */
 function openMap() {
   const modal = document.getElementById("mapModal");
   modal.classList.remove("hidden");
@@ -101,7 +107,7 @@ function openMap() {
 
   cancelBtn.onclick = closeModal;
 
-  // 배경(어두운 부분) 클릭 시 닫힘
+  // 배경 클릭 시 닫기
   modal.onclick = (e) => {
     if (e.target === modal) closeModal();
   };
@@ -111,11 +117,21 @@ function openMap() {
   }
 }
 
+/* =========================================================
+   RSVP 제출 처리 (Google Form 전송)
+   ========================================================= */
 function submitRSVP(event) {
   event.preventDefault();
 
   const form = event.target;
   const formData = new FormData(form);
+
+  // ✅ 참가비 '예' 확인 (입금 완료 선택 필수)
+  const payment = formData.get("payment");
+  if (payment !== "입금 완료") {
+    alert("참가비 입금 여부를 '예'로 선택해야 신청이 가능합니다.");
+    return; // 전송 중단
+  }
 
   // Google Form endpoint
   const googleFormUrl =
@@ -134,10 +150,11 @@ function submitRSVP(event) {
     "entry.1500214709": formData.get("carNumber") || ""
   });
 
+  // 전송
   fetch(googleFormUrl, { method: "POST", mode: "no-cors", body: params })
     .then(() => {
       form.reset();
-      toggleTransportFields(); // 초기화 후 숨김상태 재적용
+      toggleTransportFields(); // 초기화 후 숨김 상태 재적용
       const msg = document.getElementById("successMessage");
       msg?.classList.add("show");
       setTimeout(() => msg?.classList.remove("show"), 3000);
@@ -146,5 +163,4 @@ function submitRSVP(event) {
       console.error("RSVP Error:", err);
       alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
     });
-
 }
