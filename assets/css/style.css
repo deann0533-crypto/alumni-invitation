@@ -108,29 +108,24 @@ body {
    Map Section
    ========================================================= */
 .map-container { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
-.map-button, .submit-btn {
+.map-button {
+  display: block;
+  width: 100%;
+  padding: 13px 0;
   background: var(--color-primary);
   color: #fff;
-  border: none;
+  text-decoration: none;
   border-radius: 8px;
+  text-align: center;
   font-weight: 600;
   cursor: pointer;
-  padding: 15px;
-  width: 100%;
-  transition: background-color .2s, box-shadow .2s;
-
-  /* 추가할 그림자 */
-  box-shadow: 0 4px 14px rgba(44, 74, 125, 0.4);
+  transition: background-color .25s ease, box-shadow .25s ease;
+  box-shadow: 0 4px 14px rgba(44, 74, 125, 0.35);
 }
 
-.map-button:hover, .submit-btn:hover {
-  background: var(--color-primary-hover);
-  box-shadow: 0 6px 20px rgba(31, 59, 99, 0.6);
-}
-
-.map-button:active, .submit-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 12px rgba(44, 74, 125, 0.5);
+.map-button:hover {
+  background: var(--color-primary-hover, #1f3b63);
+  box-shadow: 0 6px 20px rgba(31, 59, 99, 0.55);
 }
 /* =========================================================
    Transport Guide (오시는 길 안내) - Updated
