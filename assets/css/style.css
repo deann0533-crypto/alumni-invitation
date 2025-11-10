@@ -62,22 +62,20 @@ body {
   min-height: 100vh;
 }
 
-/* =========================================================
-   Header (모바일 비율 고정 + 잘림 최소화)
-   ========================================================= */
 .header {
   width: 100%;
-  aspect-ratio: 2.4 / 1; /* 1200x500px 비율 고정 */
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .header-banner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;        /* 비율 유지하며 꽉 채움 */
-  object-position: top center; /* 🔹 이미지 상단 기준으로 정렬 */
+  height: auto;          /* ✅ 비율 유지하며 세로 자동 계산 */
+  object-fit: contain;   /* ✅ 전체 이미지 표시 (잘림 방지) */
+  background-color: #fff; /* 여백이 생기면 흰색으로 표시 */
   display: block;
 }
 
