@@ -1,23 +1,26 @@
-/* =========================================================
-   Custom Font : ClassicM (Light / Regular / Bold)
-   ========================================================= */
+/* ===== Custom Font: MuseumClassic (Light / Medium / Bold, woff2 optimized) ===== */
 @font-face {
   font-family: 'ClassicM';
-  src: url('../fonts/국립박물관문화재단클래식L.ttf') format('truetype');
+  src: url('../fonts/MuseumClassicLight.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
   font-family: 'ClassicM';
-  src: url('../fonts/국립박물관문화재단클래식M.ttf') format('truetype');
+  src: url('../fonts/MuseumClassicMedium.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
   font-family: 'ClassicM';
-  src: url('../fonts/국립박물관문화재단클래식B.ttf') format('truetype');
+  src: url('../fonts/MuseumClassicBold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 /* =========================================================
