@@ -7,11 +7,15 @@
   --color-cream-50: #fcfcf9;
   --color-slate-500: #626c71;
   --color-slate-900: #13343b;
-  --color-teal-300: #32b8c6;
-  --color-teal-500: #234055;
-  --color-teal-600: #1d7480;
+  
+  /* 바꿀 네이비 계열 톤 */
+  --color-teal-300: #337ab7;  /* 밝고 산뜻한 네이비 연한 톤 */
+  --color-teal-500: #2c4a7d;  /* 메인 네이비 */
+  --color-teal-600: #1f3b63;  /* 호버 및 강조 톤 */
+  
   --color-primary: var(--color-teal-500);
   --color-primary-light: var(--color-teal-300);
+
   --color-text: var(--color-slate-900);
   --color-bg: var(--color-cream-50);
   --color-card-bg: var(--color-white);
