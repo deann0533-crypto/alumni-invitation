@@ -129,7 +129,7 @@ function submitRSVP(event) {
   // ✅ 참가비 '예' 확인 (입금 완료 선택 필수)
   const payment = formData.get("payment");
   if (payment !== "입금 완료") {
-    alert("참가비 입금 여부를 '예'로 선택해야 신청이 가능합니다.");
+    alert("참가비 입금 후 '예'를 선택해 주세요."); // <- 수정된 메시지
     return; // 전송 중단
   }
 
