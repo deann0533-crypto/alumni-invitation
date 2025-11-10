@@ -126,17 +126,46 @@ function submitRSVP(event) {
   const form = event.target;
   const formData = new FormData(form);
 
-  // ✅ 참가비 '예' 확인 (입금 완료 선택 필수)
-  const payment = formData.get("payment");
-  if (payment !== "입금 완료") {
-    alert("참가비 입금 후 '예'를 선택해 주세요."); // <- 수정된 메시지
-    return; // 전송 중단
+  // 필수입력칸 확인
+  const requiredFields = [
+    "name",
+    "graduationYear",
+    "ageGroup",
+    "major",
+    "email",
+    "phone",
+    "payment",
+    "transport"
+  ];
+
+  for (const key of requiredFields) {
+    if (!formData.get(key)) {
+      alert("모든 필수 입력칸을 정확히 채워주세요.");
+      return;
+    }
   }
 
-  // Google Form endpoint
+  // '자차' 선택시 차량번호 필수
+  if (formData.get("transport") === "자차" && !formData.get("carNumber")) {
+    alert("자차 이용 시 차량번호를 입력해 주세요.");
+    return;
+  }
+
+  // '기타' 선택시 기타교통수단 필수
+  if (formData.get("transport") === "기타" && !formData.get("transportOther")) {
+    alert("기타 교통수단을 입력해 주세요.");
+    return;
+  }
+
+  // 참가비 입금 여부 가장 마지막에 체크
+  if (formData.get("payment") !== "입금 완료") {
+    alert("참가비 입금 후 '예'를 선택해 주세요.");
+    return;
+  }
+
+  // 이하 기존 RSVP 전송 (수정 없음)
   const googleFormUrl =
     "https://docs.google.com/forms/d/1c9Y_Vjp3wHbWFum47AF-fcDROZGrrapNJQxCTWFuduk/formResponse";
-
   const params = new URLSearchParams({
     "entry.1776982355": formData.get("name"),
     "entry.1355659894": formData.get("graduationYear"),
@@ -150,11 +179,10 @@ function submitRSVP(event) {
     "entry.1500214709": formData.get("carNumber") || ""
   });
 
-  // 전송
   fetch(googleFormUrl, { method: "POST", mode: "no-cors", body: params })
     .then(() => {
       form.reset();
-      toggleTransportFields(); // 초기화 후 숨김 상태 재적용
+      toggleTransportFields();
       const msg = document.getElementById("successMessage");
       msg?.classList.add("show");
       setTimeout(() => msg?.classList.remove("show"), 3000);
@@ -164,3 +192,4 @@ function submitRSVP(event) {
       alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
     });
 }
+
