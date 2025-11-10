@@ -160,7 +160,11 @@ body {
 .form-control:focus { outline: none; border-color: var(--color-primary); }
 
 .radio-group { display: flex; flex-direction: column; gap: 10px; }
-.radio-item { display: flex; align-items: flex-start; gap: 10px; } /* ✅ 위 정렬 */
+.radio-item {
+  display: flex;
+  align-items: center; /* 수직 정렬도 함께 수정 */
+  gap: 4px; /* 🔧 기존 10px → 4px */
+}
 .radio-item input[type="radio"] {
   width: 18px;
   height: 18px;
