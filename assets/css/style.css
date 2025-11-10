@@ -112,14 +112,16 @@ body {
   display: block;
   width: 100%;
   padding: 13px 0;
-  background: var(--color-primary);
+  background: var(--color-primary); /* 현재 네이비 색 */
   color: #fff;
-  text-decoration: none;
+  text-decoration: none;  /* 밑줄 없애기 */
   border-radius: 8px;
-  text-align: center;
+  text-align: center;     /* 글자 가운데 정렬 */
   font-weight: 600;
   cursor: pointer;
   transition: background-color .25s ease, box-shadow .25s ease;
+
+  /* 추가하는 그림자 */
   box-shadow: 0 4px 14px rgba(44, 74, 125, 0.35);
 }
 
@@ -265,10 +267,23 @@ body {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color .2s;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s, box-shadow .2s;
+
+  /* 추가하는 그림자 */
+  box-shadow: 0 4px 14px rgba(44, 74, 125, 0.35);
 }
-.submit-btn:hover { background: var(--color-teal-600); }
-.submit-btn:active { transform: translateY(1px); }
+
+.submit-btn:hover {
+  background: var(--color-primary-hover, #1f3b63);
+  box-shadow: 0 6px 20px rgba(31, 59, 99, 0.55);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 12px rgba(44, 74, 125, 0.5);
+}
 
 .success-message {
   background: #d4edda;
