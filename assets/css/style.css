@@ -109,8 +109,8 @@ body {
    ========================================================= */
 .map-container { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
 .map-button, .submit-btn {
-  background: #373d44;       /* 버튼 배경색 변경 */
-  color: #fff;              /* 버튼 텍스트 흰색 유지 */
+  background: var(--color-primary);
+  color: #fff;
   border: none;
   border-radius: 8px;
   font-weight: 600;
@@ -118,21 +118,20 @@ body {
   padding: 15px;
   width: 100%;
   transition: background-color .2s, box-shadow .2s;
-  
-  /* 그림자 추가 */
-  box-shadow: 0 4px 12px rgba(55, 61, 68, 0.45);
+
+  /* 추가할 그림자 */
+  box-shadow: 0 4px 14px rgba(44, 74, 125, 0.4);
 }
 
 .map-button:hover, .submit-btn:hover {
-  background: #2e343b;    /* 약간 어두운 색상 (호버) */
-  box-shadow: 0 6px 18px rgba(46, 52, 59, 0.65);
+  background: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(31, 59, 99, 0.6);
 }
 
 .map-button:active, .submit-btn:active {
   transform: translateY(1px);
-  box-shadow: 0 3px 9px rgba(55, 61, 68, 0.55);
+  box-shadow: 0 3px 12px rgba(44, 74, 125, 0.5);
 }
-
 /* =========================================================
    Transport Guide (오시는 길 안내) - Updated
    ========================================================= */
