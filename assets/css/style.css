@@ -62,35 +62,21 @@ body {
   min-height: 100vh;
 }
 
-/* ===== 모바일 비율 고정 배너 (이미지 비율 유지) ===== */
 .header {
   width: 100%;
-  aspect-ratio: 2.4 / 1; /* ✅ 가로:세로 비율 지정 (약 2.4:1 정도가 자연스러움) */
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .header-banner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;       /* 비율 유지하며 영역 채우기 */
-  object-position: center; /* 이미지 중앙 기준 */
+  height: auto;          /* ✅ 비율 유지하며 세로 자동 계산 */
+  object-fit: contain;   /* ✅ 전체 이미지 표시 (잘림 방지) */
+  background-color: #fff; /* 여백이 생기면 흰색으로 표시 */
   display: block;
-}
-
-/* 태블릿 이상에서는 비율 유지하며 조금 더 크게 */
-@media (min-width: 768px) {
-  .header {
-    height: 320px;
-  }
-}
-
-/* 데스크탑 이상에서는 더 시원하게 높이 확장 */
-@media (min-width: 1024px) {
-  .header {
-    height: 400px;
-  }
 }
 
 
