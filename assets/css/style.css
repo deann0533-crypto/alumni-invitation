@@ -62,10 +62,10 @@ body {
   min-height: 100vh;
 }
 
-/* ===== 반응형 이미지 배너 (모바일 기준, 데스크탑 깨짐 방지) ===== */
+/* ===== 모바일 비율 고정 배너 (이미지 비율 유지) ===== */
 .header {
   width: 100%;
-  height: 240px; /* 모바일 기준 높이 */
+  aspect-ratio: 2.4 / 1; /* ✅ 가로:세로 비율 지정 (약 2.4:1 정도가 자연스러움) */
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
   position: relative;
@@ -74,8 +74,8 @@ body {
 .header-banner {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* 비율 유지하며 영역 꽉 채움 */
-  object-position: center; /* 이미지 중심 기준으로 잘림 */
+  object-fit: cover;       /* 비율 유지하며 영역 채우기 */
+  object-position: center; /* 이미지 중앙 기준 */
   display: block;
 }
 
