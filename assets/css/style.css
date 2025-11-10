@@ -337,7 +337,7 @@ body {
 /* ✅ 자차 문구를 라벨 옆에 자연스럽게 표시 */
 #car + label + .form-hint {
   display: inline;
-  margin-left: 2px; /* 🔧 왼쪽 여백 줄임 */
+  margin-left: 1px; /* 🔧 왼쪽 여백 줄임 */
   font-size: 13px;
   color: #777;
   line-height: 1.4;
