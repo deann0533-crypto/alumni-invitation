@@ -334,3 +334,11 @@ body {
   .info-value { padding-left: 0; }
   .header-logo { max-width: 100%; }
 }
+/* ✅ 자차 문구를 라벨 옆에 자연스럽게 표시 */
+#car + label + .form-hint {
+  display: inline;
+  margin-left: 6px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+}
