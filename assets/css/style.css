@@ -34,13 +34,51 @@ body {
 }
 
 /* ===== Header ===== */
+/* ===== Header (흰색 배경 + ClassicM 폰트) ===== */
+@font-face {
+  font-family: 'ClassicM';
+  src: url('../fonts/국립박물관문화재단클래식M.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .header {
-  background: linear-gradient(135deg, #f4c430 0%, #f7d954 100%);
-  color: #2d3436;
-  padding: 50px 30px;
+  background-color: #fff; /* 완전 흰색 배경 */
+  color: var(--color-text); /* 다크 텍스트 색상 */
+  padding: 80px 30px; /* 배너 높이감 유지 */
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--color-border); /* 아래 구분선 */
+}
+
+.header h1 {
+  font-family: 'ClassicM', serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-family: 'ClassicM', serif;
+  font-size: 18px;
+  color: #555;
+  opacity: 0.9;
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+  .header {
+    padding: 60px 20px;
+  }
+  .header h1 {
+    font-size: 26px;
+  }
+  .header p {
+    font-size: 15px;
+  }
 }
 .header::before {
   content: '';
