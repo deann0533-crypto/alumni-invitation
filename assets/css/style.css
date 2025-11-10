@@ -62,21 +62,20 @@ body {
   min-height: 100vh;
 }
 
-/* ===== 모바일 비율 고정 배너 ===== */
+/* ===== 모바일 비율 고정 배너 (이미지 비율 유지) ===== */
 .header {
   width: 100%;
-  aspect-ratio: 2 / 1; /* 가로:세로 비율 고정 — 2:1 */
+  aspect-ratio: 2.4 / 1; /* ✅ 가로:세로 비율 지정 (약 2.4:1 정도가 자연스러움) */
   overflow: hidden;
   border-bottom: 1px solid var(--color-border);
   position: relative;
-  max-height: 540px; /* 너무 커지지 않게 제한 (옵션) */
 }
 
 .header-banner {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* 비율 유지하면서 영역 꽉 채우기 */
-  object-position: center; /* 중앙 기준 */
+  object-fit: cover;       /* 비율 유지하며 영역 채우기 */
+  object-position: center; /* 이미지 중앙 기준 */
   display: block;
 }
 
