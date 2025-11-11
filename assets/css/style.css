@@ -522,3 +522,14 @@ body {
 .info-value a[href^="tel:"]:hover {
   text-decoration: underline;
 }
+/* =========================================================
+   모바일 전용: 인비테이션 카드가 배너에 너무 붙는 문제 해결
+   ========================================================= */
+@media (max-width: 480px) {
+  .invitation {
+    margin-top: 24px !important;   /* 배너와 카드 사이 충분한 간격 */
+    padding-top: 28px !important;  /* 카드 내부 여백 유지 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); /* 살짝 덜 뜨게 */
+    z-index: 1;                    /* 배너와 시각적으로 분리 */
+  }
+}
