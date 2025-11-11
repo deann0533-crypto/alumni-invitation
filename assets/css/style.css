@@ -435,8 +435,7 @@ body {
 .event-info-note {
   font-size: 13px;
   color: var(--color-slate-500);
-  margin-top: -10px; /* 행사 정보와 너무 떨어지지 않도록 약간 위쪽 마진 조정 */
-  margin-bottom: 30px;
+  margin-top: 6px;  /* 장소 텍스트와의 간격 */
   font-weight: 400;
   line-height: 1.4;
 }
