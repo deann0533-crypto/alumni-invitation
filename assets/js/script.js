@@ -192,4 +192,34 @@ function submitRSVP(event) {
       alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
     });
 }
+/* =========================================================
+   교통수단 선택 시 입력칸 토글 (안전한 위임 방식)
+   ========================================================= */
+function setTransportFieldsBy(value) {
+  const carGroup   = document.getElementById("carNumberGroup");
+  const otherGroup = document.getElementById("otherTransportGroup");
+  if (!carGroup || !otherGroup) return;
 
+  // 기본: 모두 숨김
+  carGroup.classList.add("hidden");
+  otherGroup.classList.add("hidden");
+
+  if (value === "자차") {
+    carGroup.classList.remove("hidden");
+  } else if (value === "기타") {
+    otherGroup.classList.remove("hidden");
+  }
+}
+
+// ✅ 폼 전체에 변경 위임 (라디오 개별 바인딩 이슈 방지)
+document.addEventListener("change", (e) => {
+  if (e.target && e.target.name === "transport") {
+    setTransportFieldsBy(e.target.value);
+  }
+});
+
+// ✅ 초기 상태 보정 (DOM 로드 완료 후)
+document.addEventListener("DOMContentLoaded", () => {
+  const selected = document.querySelector('input[name="transport"]:checked');
+  setTransportFieldsBy(selected ? selected.value : "");
+});
