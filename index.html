@@ -176,38 +176,50 @@
         </div>
 
         <!-- 오시는 경로 -->
-        <div class="form-group">
-          <label class="form-label">오시는 경로 *</label>
-          <div class="radio-group">
-            <div class="radio-item">
-              <input type="radio" id="publicTransport" name="transport" value="대중교통" required/>
-              <label for="publicTransport">대중교통</label>
-            </div>
+<div class="form-group">
+  <label class="form-label">오시는 경로 *</label>
+  <div class="radio-group">
+    <div class="radio-item">
+      <input type="radio" id="publicTransport" name="transport" value="대중교통" required />
+      <label for="publicTransport">대중교통</label>
+    </div>
 
-            <!-- 🔧 중복/중첩 제거 + 한 항목으로 정리 -->
-            <div class="radio-item">
-              <input type="radio" id="car" name="transport" value="자차"/>
-              <label for="car">자차</label>
-              <!-- 옆에 자연스럽게 붙는 안내문 (CSS: #car + label + .form-hint) -->
-              <small class="form-hint">주차 할인 사전 등록 필수</small>
-            </div>
+    <div class="radio-item">
+      <input type="radio" id="car" name="transport" value="자차" />
+      <label for="car">자차</label>
+      <small class="form-hint">주차 할인 사전 등록 필수</small>
+    </div>
 
-            <div class="radio-item">
-              <input type="radio" id="other" name="transport" value="기타"/>
-              <label for="other">기타</label>
-            </div>
-          </div>
-        </div>
+    <div class="radio-item">
+      <input type="radio" id="other" name="transport" value="기타" />
+      <label for="other">기타</label>
+    </div>
+  </div>
+</div>
 
-        <div class="form-group hidden" id="otherTransportGroup">
-          <label class="form-label" for="transportOther">기타 교통수단</label>
-          <input type="text" id="transportOther" name="transportOther" class="form-control" placeholder="교통수단을 입력해주세요"/>
-        </div>
+<!-- 기타 교통수단 입력칸 -->
+<div class="form-group hidden" id="otherTransportGroup">
+  <label class="form-label" for="transportOther">기타 교통수단</label>
+  <input
+    type="text"
+    id="transportOther"
+    name="transportOther"
+    class="form-control"
+    placeholder="교통수단을 입력해주세요"
+  />
+</div>
 
-        <div class="form-group hidden" id="carNumberGroup">
-          <label class="form-label" for="carNumber">차량번호</label>
-          <input type="text" id="carNumber" name="carNumber" class="form-control" placeholder="예: 12가3456"/>
-        </div>
+<!-- 차량번호 입력칸 -->
+<div class="form-group hidden" id="carNumberGroup">
+  <label class="form-label" for="carNumber">차량번호</label>
+  <input
+    type="text"
+    id="carNumber"
+    name="carNumber"
+    class="form-control"
+    placeholder="예: 12가3456"
+  />
+</div>
 
         <button type="submit" class="submit-btn">참석 신청하기</button>
         <div id="successMessage" class="success-message">✅ 신청이 완료되었습니다. 감사합니다!</div>
