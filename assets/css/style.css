@@ -360,3 +360,65 @@ body {
   .info-label { width: auto; margin-bottom: 5px; }
   .info-value { padding-left: 0; }
 }
+/* =========================================================
+   디자인 개선 (2025-11 업데이트)
+   ========================================================= */
+
+/* 1️⃣ 배너와 인비테이션 카드 간 여백 확보 */
+.header {
+  margin-bottom: 24px; /* 배너 하단 간격 추가 */
+}
+
+/* 2️⃣ 카드 폭 여유 있게: 너무 꽉 차지 않도록 */
+.container {
+  max-width: 520px;   /* 기존 560 → 520 (더 여유롭게) */
+  padding: 0 10px;    /* 좌우에 살짝 여백 */
+}
+
+/* 카드 전체 폭도 살짝 줄여 균형감 향상 */
+.invitation,
+.event-info,
+.map-section,
+.rsvp-section {
+  margin: 30px auto;
+  padding: 28px 22px;
+  width: 95%;           /* 폭을 살짝 줄여 여백 확보 */
+}
+
+/* 3️⃣ 행사정보 전반 폰트 사이즈 살짝 축소 */
+.event-info,
+.event-info .info-item,
+.event-info .info-label,
+.event-info .info-value {
+  font-size: 15px;       /* 기존보다 약간 작게 */
+  line-height: 1.6;
+}
+
+/* 헤더 타이틀(📅 행사 정보 등)은 시각적으로 여전히 강조 */
+.event-info h2 {
+  font-size: 19px;
+}
+
+/* 4️⃣ Footer 모서리 둥글지 않게 & 화면 꽉 차게 */
+.footer {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 35px 0;
+  font-size: 14px;
+  border-radius: 0;      /* 둥근 모서리 제거 */
+  margin: 0;
+  width: 100%;
+}
+
+/* 💡 모바일 대응 */
+@media (max-width: 480px) {
+  .container { max-width: 100%; padding: 0 12px; }
+  .invitation, .event-info, .map-section, .rsvp-section {
+    width: 100%;
+    margin: 0 0 20px;
+  }
+  .event-info, .info-item {
+    font-size: 14px;
+  }
+}
