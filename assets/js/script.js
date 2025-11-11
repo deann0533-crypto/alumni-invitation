@@ -1,29 +1,26 @@
+// =========================================================
+// Iowa Club Korea 2025 - Main Script
+// =========================================================
+
 // DOM 준비 후 이벤트 연결
 document.addEventListener("DOMContentLoaded", () => {
-  // 지도 버튼
+  // 지도 버튼 클릭 시 모달 열기
   const openMapBtn = document.getElementById("openMapBtn");
   openMapBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     openMap();
   });
 
-  // 교통수단 라디오 변경
-  ["publicTransport", "car", "other"].forEach(id => {
-    const el = document.getElementById(id);
-    el?.addEventListener("change", toggleTransportFields);
-  });
-
-  // 폼 제출
+  // 폼 제출 이벤트
   const form = document.getElementById("rsvp-form");
   form?.addEventListener("submit", submitRSVP);
-
-  // 최초 로드시 숨김 상태 보정
-  toggleTransportFields();
 
   // 계좌번호 복사 버튼
   const copyBtn = document.getElementById("copyAccountBtn");
   copyBtn?.addEventListener("click", async () => {
-    const account = copyBtn.dataset.account || document.querySelector(".account-number")?.textContent?.trim();
+    const account =
+      copyBtn.dataset.account ||
+      document.querySelector(".account-number")?.textContent?.trim();
     if (!account) return;
 
     try {
@@ -55,36 +52,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1200);
     }
   });
+
+  // 페이지 로드시 교통수단 필드 초기화
+  const selected = document.querySelector('input[name="transport"]:checked');
+  setTransportFieldsBy(selected ? selected.value : "");
 });
 
-/* =========================================================
-   교통수단 라디오에 따른 입력 필드 토글
-   ========================================================= */
-function toggleTransportFields() {
-  const carRadio = document.getElementById("car");
-  const otherRadio = document.getElementById("other");
-  const carNumberGroup = document.getElementById("carNumberGroup");
-  const otherTransportGroup = document.getElementById("otherTransportGroup");
+// =========================================================
+// 교통수단 선택 시 입력칸 토글 (안전한 위임 방식)
+// =========================================================
+function setTransportFieldsBy(value) {
+  const carGroup = document.getElementById("carNumberGroup");
+  const otherGroup = document.getElementById("otherTransportGroup");
+  if (!carGroup || !otherGroup) return;
 
-  if (!carNumberGroup || !otherTransportGroup) return;
+  // 기본: 모두 숨김
+  carGroup.classList.add("hidden");
+  otherGroup.classList.add("hidden");
 
-  if (carRadio?.checked) {
-    carNumberGroup.classList.remove("hidden");
-    otherTransportGroup.classList.add("hidden");
-  } else if (otherRadio?.checked) {
-    otherTransportGroup.classList.remove("hidden");
-    carNumberGroup.classList.add("hidden");
-  } else {
-    carNumberGroup.classList.add("hidden");
-    otherTransportGroup.classList.add("hidden");
+  if (value === "자차") {
+    carGroup.classList.remove("hidden");
+  } else if (value === "기타") {
+    otherGroup.classList.remove("hidden");
   }
 }
 
-/* =========================================================
-   지도 앱 선택 모달
-   ========================================================= */
+// ✅ 폼 전체에 변경 위임 (라디오 개별 바인딩 이슈 방지)
+document.addEventListener("change", (e) => {
+  if (e.target && e.target.name === "transport") {
+    setTransportFieldsBy(e.target.value);
+  }
+});
+
+// =========================================================
+// 지도 앱 선택 모달
+// =========================================================
 function openMap() {
   const modal = document.getElementById("mapModal");
+  if (!modal) return;
   modal.classList.remove("hidden");
 
   const naverBtn = document.getElementById("naverBtn");
@@ -99,12 +104,10 @@ function openMap() {
     window.open(kakaoUrl, "_blank");
     closeModal();
   };
-
   naverBtn.onclick = () => {
     window.open(naverUrl, "_blank");
     closeModal();
   };
-
   cancelBtn.onclick = closeModal;
 
   // 배경 클릭 시 닫기
@@ -117,9 +120,9 @@ function openMap() {
   }
 }
 
-/* =========================================================
-   RSVP 제출 처리 (Google Form 전송)
-   ========================================================= */
+// =========================================================
+// RSVP 제출 처리 (Google Form 전송)
+// =========================================================
 function submitRSVP(event) {
   event.preventDefault();
 
@@ -157,13 +160,13 @@ function submitRSVP(event) {
     return;
   }
 
-  // 참가비 입금 여부 가장 마지막에 체크
+  // 참가비 입금 여부 체크
   if (formData.get("payment") !== "입금 완료") {
-    alert("참가비 입금 후 '예'를 선택해 주세요.");
+    alert("참가비 입금 후 '입금 완료'를 선택해 주세요.");
     return;
   }
 
-  // 이하 기존 RSVP 전송 (수정 없음)
+  // Google Form 전송
   const googleFormUrl =
     "https://docs.google.com/forms/d/1c9Y_Vjp3wHbWFum47AF-fcDROZGrrapNJQxCTWFuduk/formResponse";
   const params = new URLSearchParams({
@@ -182,7 +185,7 @@ function submitRSVP(event) {
   fetch(googleFormUrl, { method: "POST", mode: "no-cors", body: params })
     .then(() => {
       form.reset();
-      toggleTransportFields();
+      setTransportFieldsBy("");
       const msg = document.getElementById("successMessage");
       msg?.classList.add("show");
       setTimeout(() => msg?.classList.remove("show"), 3000);
@@ -192,34 +195,3 @@ function submitRSVP(event) {
       alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
     });
 }
-/* =========================================================
-   교통수단 선택 시 입력칸 토글 (안전한 위임 방식)
-   ========================================================= */
-function setTransportFieldsBy(value) {
-  const carGroup   = document.getElementById("carNumberGroup");
-  const otherGroup = document.getElementById("otherTransportGroup");
-  if (!carGroup || !otherGroup) return;
-
-  // 기본: 모두 숨김
-  carGroup.classList.add("hidden");
-  otherGroup.classList.add("hidden");
-
-  if (value === "자차") {
-    carGroup.classList.remove("hidden");
-  } else if (value === "기타") {
-    otherGroup.classList.remove("hidden");
-  }
-}
-
-// ✅ 폼 전체에 변경 위임 (라디오 개별 바인딩 이슈 방지)
-document.addEventListener("change", (e) => {
-  if (e.target && e.target.name === "transport") {
-    setTransportFieldsBy(e.target.value);
-  }
-});
-
-// ✅ 초기 상태 보정 (DOM 로드 완료 후)
-document.addEventListener("DOMContentLoaded", () => {
-  const selected = document.querySelector('input[name="transport"]:checked');
-  setTransportFieldsBy(selected ? selected.value : "");
-});
