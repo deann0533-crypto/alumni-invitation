@@ -7,12 +7,12 @@
   --color-cream-50: #fcfcf9;
   --color-slate-500: #626c71;
   --color-slate-900: #13343b;
-  
-  /* 바꿀 네이비 계열 톤 */
-  --color-teal-300: #337ab7;  /* 밝고 산뜻한 네이비 연한 톤 */
+
+  /* 네이비 톤 */
+  --color-teal-300: #337ab7;  /* 밝은 보조 톤 */
   --color-teal-500: #2c4a7d;  /* 메인 네이비 */
-  --color-teal-600: #1f3b63;  /* 호버 및 강조 톤 */
-  
+  --color-teal-600: #1f3b63;  /* 호버/강조 */
+
   --color-primary: var(--color-teal-500);
   --color-primary-light: var(--color-teal-300);
 
@@ -23,7 +23,7 @@
 }
 
 /* =========================================================
-   Reset & Base Layout
+   Reset & Base
    ========================================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -34,13 +34,17 @@ body {
   background: var(--color-bg);
 }
 
+/* 페이지 폭: 너무 넓지 않게 살짝 줄임 */
 .container {
-  max-width: 600px;
+  max-width: 560px;         /* ← 기존 600px → 560px */
   margin: 0 auto;
-  background: #fff;
+  background: var(--color-bg); /* 컨테이너 배경을 페이지 배경과 동일하게 */
   min-height: 100vh;
 }
 
+/* =========================================================
+   Header
+   ========================================================= */
 .header {
   width: 100%;
   overflow: hidden;
@@ -48,31 +52,41 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
+  background: #fff; /* 배너 하얀 여백 정리 */
 }
 
 .header-banner {
   width: 100%;
   height: auto;
   object-fit: contain;
-  background-color: #fff;
   display: block;
 }
 
-.invitation {
-  padding: 0; /* 초대 섹션의 패딩 제거 */
-  margin-bottom: 30px; /* 카드 간 간격 유지 */
+/* =========================================================
+   Section Container Styling (카드형 공통)
+   ========================================================= */
+.invitation,
+.event-info,
+.map-section,
+.rsvp-section {
+  background: var(--color-card-bg);
+  margin: 30px 20px;     /* 섹션 간격 */
+  padding: 30px 25px;    /* 카드 내부 여백 */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.05);
+  border: 1px solid var(--color-border);
 }
 
+/* 초대문 텍스트: 카드 속성은 섹션이 담당하므로 내용만 정리 */
 .invitation-text {
-  background: var(--color-card-bg);
-  padding: 30px; /* 카드와 동일한 패딩 */
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.06);
-  border: 1px solid var(--color-border);
-  margin-bottom: 0; /* 중복 마진 제거 */
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
   font-size: 16px;
   line-height: 1.8;
   color: var(--color-text);
+  margin: 0;
 }
 
 /* =========================================================
@@ -86,6 +100,7 @@ body {
   align-items: center;
   gap: 8px;
 }
+
 .info-item { display: flex; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
 .info-item:last-child { border-bottom: none; }
 .info-label {
@@ -99,34 +114,40 @@ body {
   color: var(--color-text);
   padding-left: 15px;
 }
+.event-info-note {
+  font-size: 13px;
+  color: var(--color-slate-500);
+  margin-top: 6px;
+  font-weight: 400;
+  line-height: 1.4;
+}
 
 /* =========================================================
    Map Section
    ========================================================= */
 .map-container { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
+
 .map-button {
   display: block;
   width: 100%;
   padding: 13px 0;
-  background: var(--color-primary); /* 현재 네이비 색 */
+  background: var(--color-primary);
   color: #fff;
-  text-decoration: none;  /* 밑줄 없애기 */
+  text-decoration: none;
   border-radius: 8px;
-  text-align: center;     /* 글자 가운데 정렬 */
+  text-align: center;
   font-weight: 600;
   cursor: pointer;
   transition: background-color .25s ease, box-shadow .25s ease;
-
-  /* 추가하는 그림자 */
   box-shadow: 0 4px 14px rgba(44, 74, 125, 0.35);
 }
-
 .map-button:hover {
-  background: var(--color-primary-hover, #1f3b63);
+  background: var(--color-teal-600);
   box-shadow: 0 6px 20px rgba(31, 59, 99, 0.55);
 }
+
 /* =========================================================
-   Transport Guide (오시는 길 안내) - Updated
+   Transport Guide (오시는 길 안내)
    ========================================================= */
 .transport-guide {
   margin-top: 24px;
@@ -135,7 +156,6 @@ body {
   border-radius: 12px;
   border: 1px solid #e9ecef;
 }
-
 .transport-guide h3 {
   font-size: 16px;
   font-weight: 700;
@@ -144,70 +164,21 @@ body {
   padding-bottom: 12px;
   border-bottom: 1px solid #e9ecef;
 }
-
 .transport-item {
   display: flex;
   gap: 15px;
   align-items: flex-start;
 }
-
-.transport-item:not(:last-child) {
-  margin-bottom: 18px;
-}
-
-.transport-title {
-  flex-shrink: 0;
-  width: 70px;
-  text-align: center;
-}
-
-.transport-title .icon {
-  font-size: 22px;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.transport-title strong {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-slate-500);
-}
-
-.transport-desc {
-  flex-grow: 1;
-  font-size: 14px;
-  color: var(--color-text);
-  line-height: 1.7;
-}
-
-.transport-desc p {
-  margin: 0 0 5px 0;
-}
-
-/* 역 이름 등 주요 정보 강조 */
-.transport-desc > p > strong {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.transport-desc .bus-numbers {
-  font-size: 13px;
-  color: var(--color-slate-500);
-  line-height: 1.5;
-  word-break: keep-all;
-}
-
-.transport-desc .parking-info {
-  font-size: 13px;
-  color: var(--color-slate-500);
-}
-
-/* 주차 정보 특별 강조 */
-.transport-desc .parking-info strong {
-  color: #d9534f;
-  font-weight: 700;
-}
-
+.transport-item:not(:last-child) { margin-bottom: 18px; }
+.transport-title { flex-shrink: 0; width: 70px; text-align: center; }
+.transport-title .icon { font-size: 22px; display: block; margin-bottom: 5px; }
+.transport-title strong { font-size: 14px; font-weight: 600; color: var(--color-slate-500); }
+.transport-desc { flex-grow: 1; font-size: 14px; color: var(--color-text); line-height: 1.7; }
+.transport-desc p { margin: 0 0 5px 0; }
+.transport-desc > p > strong { font-weight: 700; color: var(--color-primary); }
+.transport-desc .bus-numbers { font-size: 13px; color: var(--color-slate-500); line-height: 1.5; word-break: keep-all; }
+.transport-desc .parking-info { font-size: 13px; color: var(--color-slate-500); }
+.transport-desc .parking-info strong { color: #d9534f; font-weight: 700; }
 
 /* =========================================================
    Form Styles
@@ -232,25 +203,26 @@ body {
 .form-control:focus { outline: none; border-color: var(--color-primary); }
 
 .radio-group { display: flex; flex-direction: column; gap: 10px; }
-.radio-item {
-  display: flex;
-  align-items: center; /* 수직 정렬도 함께 수정 */
-  gap: 4px; /* 🔧 기존 10px → 4px */
-}
-.radio-item input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--color-primary);
-}
+.radio-item { display: flex; align-items: center; gap: 4px; }
+.radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
 .radio-item label { font-size: 14px; cursor: pointer; margin: 0; }
 
-/* ✅ 자차 문구 들여쓰기 */
+/* 자차 안내문 */
 .radio-item .form-hint {
   margin-top: 4px;
   margin-left: 28px;
   font-size: 13px;
   color: #777;
   line-height: 1.4;
+}
+/* 라디오 옆 붙는 힌트 */
+#car + label + .form-hint {
+  display: inline;
+  margin-left: 1px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+  vertical-align: middle;
 }
 
 .submit-btn {
@@ -266,20 +238,13 @@ body {
   text-align: center;
   text-decoration: none;
   transition: background-color .2s, box-shadow .2s;
-
-  /* 추가하는 그림자 */
   box-shadow: 0 4px 14px rgba(44, 74, 125, 0.35);
 }
-
 .submit-btn:hover {
-  background: var(--color-primary-hover, #1f3b63);
+  background: var(--color-teal-600);
   box-shadow: 0 6px 20px rgba(31, 59, 99, 0.55);
 }
-
-.submit-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 12px rgba(44, 74, 125, 0.5);
-}
+.submit-btn:active { transform: translateY(1px); box-shadow: 0 3px 12px rgba(44, 74, 125, 0.5); }
 
 .success-message {
   background: #d4edda;
@@ -290,28 +255,15 @@ body {
   text-align: center;
   font-weight: 600;
   display: none;
-  transition: opacity 0.3s ease; /* ✅ 부드러운 전환 */
+  transition: opacity 0.3s ease;
 }
-.success-message.show {
-  display: block;
-  animation: slideDown .3s ease-out;
-}
-@keyframes slideDown {
-  from { opacity:0; transform:translateY(-20px) }
-  to { opacity:1; transform:translateY(0) }
-}
+.success-message.show { display: block; animation: slideDown .3s ease-out; }
+@keyframes slideDown { from { opacity:0; transform:translateY(-20px) } to { opacity:1; transform:translateY(0) } }
 
-/* 안내문구 (ex. 차량번호 아래 문구) */
-.form-hint {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-}
+.form-hint { display: block; margin-top: 6px; font-size: 13px; color: #777; line-height: 1.4; }
 
 /* =========================================================
-   Bank Info & Buttons
+   Bank Info & Copy Button
    ========================================================= */
 .bank-info {
   margin-top: 10px;
@@ -329,7 +281,6 @@ body {
 }
 .bank-info strong { color: #004c99; font-weight: 700; }
 
-/* ✅ 복사 버튼 강화 */
 .copy-btn {
   flex-shrink: 0;
   padding: 6px 12px;
@@ -342,24 +293,7 @@ body {
   cursor: pointer;
   transition: all .2s ease;
 }
-.copy-btn:hover {
-  background-color: #0b66c3;
-  color: #fff;
-  border-color: #0b66c3;
-}
-
-/* =========================================================
-   Footer
-   ========================================================= */
-.footer {
-  background: var(--color-primary);
-  color: #fff;
-  text-align: center;
-  padding: 30px;
-  font-size: 14px;
-}
-
-.hidden { display: none; }
+.copy-btn:hover { background-color: #0b66c3; color: #fff; border-color: #0b66c3; }
 
 /* =========================================================
    Modal (Map App Choice)
@@ -384,11 +318,7 @@ body {
   animation: fadeIn .25s ease-out;
   width: 280px;
 }
-.modal-content h3 {
-  margin-bottom: 20px;
-  font-size: 18px;
-  color: var(--color-text);
-}
+.modal-content h3 { margin-bottom: 20px; font-size: 18px; color: var(--color-text); }
 .modal-buttons { display: flex; justify-content: center; gap: 10px; }
 .modal-btn {
   border: none;
@@ -402,54 +332,31 @@ body {
 .modal-btn.kakao { background: #fee500; color: #3c1e1e; }
 .modal-btn.cancel { background: #ddd; color: #333; }
 .modal-btn:hover { opacity: .92; }
-@keyframes fadeIn {
-  from { opacity:0; transform:translateY(-10px) }
-  to { opacity:1; transform:translateY(0) }
+@keyframes fadeIn { from { opacity:0; transform:translateY(-10px) } to { opacity:1; transform:translateY(0) } }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.footer {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+  border-radius: 16px;      /* 카드 안에서도 둥글게 보이도록 */
+  margin: 0;                /* 섹션 카드 내부라면 유지, 독립이면 조정 */
 }
 
 /* =========================================================
-   Responsive Layout Adjustments
+   Responsive
    ========================================================= */
 @media (max-width: 480px) {
-  .container { margin: 0; }
   .header { padding: 40px 20px; }
-  .header h1 { font-size: 24px; }
   .invitation, .event-info, .map-section, .rsvp-section {
+    margin: 0 10px 20px;   /* 모바일 여백 축소 */
     padding: 20px;
-    margin: 0 15px 20px;
   }
   .info-item { flex-direction: column; padding: 10px 0; }
   .info-label { width: auto; margin-bottom: 5px; }
   .info-value { padding-left: 0; }
-  .header-logo { max-width: 100%; }
-}
-/* ✅ 자차 문구를 라벨 옆에 자연스럽게 표시 */
-#car + label + .form-hint {
-  display: inline;
-  margin-left: 1px; /* 🔧 왼쪽 여백 줄임 */
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-  vertical-align: middle; /* 🔧 글자 높이 정렬 */
-}
-.event-info-note {
-  font-size: 13px;
-  color: var(--color-slate-500);
-  margin-top: 6px;  /* 장소 텍스트와의 간격 */
-  font-weight: 400;
-  line-height: 1.4;
-}
-/* =========================================================
-   Section Container Styling (공통 카드형)
-   ========================================================= */
-.invitation,
-.event-info,
-.map-section,
-.rsvp-section {
-  background: var(--color-card-bg);
-  margin: 30px 20px;
-  padding: 30px 25px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.05);
-  border: 1px solid var(--color-border);
 }
