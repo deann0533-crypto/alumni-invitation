@@ -422,3 +422,80 @@ body {
     font-size: 14px;
   }
 }
+/* =========================================================
+   디자인 개선 2025-11 (배너/인비/폭/폰트 재조정)
+   ========================================================= */
+
+/* 배너는 꽉 차게 유지 (상단 풀폭) */
+.header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+.header-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* 인비 카드 위쪽 여백 + 떠 있는 느낌 (살짝 그림자 강조) */
+.invitation {
+  margin-top: -20px;         /* 배너 아래로 살짝 겹치게 */
+  padding-top: 35px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 5;
+}
+
+/* 전체 카드 폭 조금 더 좁게 */
+.container {
+  max-width: 480px;          /* 기존보다 더 좁게 */
+  padding: 0 8px;
+}
+
+/* 각 섹션 카드도 살짝 좁혀서 시각적 여백 확보 */
+.invitation,
+.event-info,
+.map-section,
+.rsvp-section {
+  width: 92%;                /* 카드폭 줄임 */
+  margin: 30px auto;
+}
+
+/* 행사정보 폰트 더 작게 (조밀한 느낌) */
+.event-info,
+.event-info .info-item,
+.event-info .info-label,
+.event-info .info-value {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.event-info h2 {
+  font-size: 18px;
+}
+
+/* footer는 화면 아래 가득, 모서리 없이 */
+.footer {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 35px 0;
+  font-size: 14px;
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+  .container { max-width: 100%; padding: 0 12px; }
+  .invitation, .event-info, .map-section, .rsvp-section {
+    width: 100%;
+    margin: 0 0 20px;
+  }
+  .event-info, .info-item {
+    font-size: 13.5px;
+  }
+}
