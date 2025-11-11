@@ -512,3 +512,13 @@ body {
     padding-top: 28px;             /* 카드 내용 여유 */
   }
 }
+/* 전화번호 링크 스타일 */
+.info-value a[href^="tel:"] {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-value a[href^="tel:"]:hover {
+  text-decoration: underline;
+}
