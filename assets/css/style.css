@@ -499,3 +499,7 @@ body {
     font-size: 13.5px;
   }
 }
+/* 숨김 처리용 */
+.hidden {
+  display: none !important;
+}
