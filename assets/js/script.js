@@ -1,21 +1,17 @@
 // =========================================================
-// Iowa Club Korea 2025 - Main Script (최종 완성본)
+// Iowa Club Korea 2025 - Main Script (최종 완성 + 다국어 전환)
 // =========================================================
 
-// DOM 준비 후 이벤트 연결
 document.addEventListener("DOMContentLoaded", () => {
-  // 지도 버튼
   const openMapBtn = document.getElementById("openMapBtn");
   openMapBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     openMap();
   });
 
-  // 폼 제출
   const form = document.getElementById("rsvp-form");
   form?.addEventListener("submit", submitRSVP);
 
-  // 계좌번호 복사 버튼
   const copyBtn = document.getElementById("copyAccountBtn");
   copyBtn?.addEventListener("click", async () => {
     const account =
@@ -32,8 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         copyBtn.textContent = original;
         copyBtn.disabled = false;
       }, 1200);
-    } catch (e) {
-      // clipboard API 실패 시 폴백
+    } catch {
       const sel = window.getSelection();
       const range = document.createRange();
       const node = document.querySelector(".account-number");
@@ -53,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 페이지 로드시 교통수단 필드 초기화 (둘 다 숨김)
   setTransportFields("");
+  initLanguageSwitcher();
 });
 
 // =========================================================
@@ -65,19 +60,14 @@ function setTransportFields(value) {
   const otherGroup = document.getElementById("otherTransportGroup");
   if (!carGroup || !otherGroup) return;
 
-  // 항상 기본적으로 숨김
   carGroup.classList.add("hidden");
   otherGroup.classList.add("hidden");
 
-  // 선택값에 따라 표시
-  if (value === "자차") {
-    carGroup.classList.remove("hidden");
-  } else if (value === "기타") {
+  if (value === "자차" || value === "Car") carGroup.classList.remove("hidden");
+  else if (value === "기타" || value === "Other")
     otherGroup.classList.remove("hidden");
-  }
 }
 
-// 라디오 변경 시 반응
 document.addEventListener("change", (e) => {
   if (e.target && e.target.name === "transport") {
     setTransportFields(e.target.value);
@@ -109,7 +99,6 @@ function openMap() {
     closeModal();
   };
   cancelBtn.onclick = closeModal;
-
   modal.onclick = (e) => {
     if (e.target === modal) closeModal();
   };
@@ -124,7 +113,6 @@ function openMap() {
 // =========================================================
 function submitRSVP(event) {
   event.preventDefault();
-
   const form = event.target;
   const formData = new FormData(form);
 
@@ -179,7 +167,7 @@ function submitRSVP(event) {
   fetch(googleFormUrl, { method: "POST", mode: "no-cors", body: params })
     .then(() => {
       form.reset();
-      setTransportFields(""); // 제출 후에도 숨김 상태로 초기화
+      setTransportFields("");
       const msg = document.getElementById("successMessage");
       msg?.classList.add("show");
       setTimeout(() => msg?.classList.remove("show"), 3000);
@@ -188,4 +176,72 @@ function submitRSVP(event) {
       console.error("RSVP Error:", err);
       alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
     });
+}
+
+// =========================================================
+// 언어 전환 (한국어 / 영어)
+// =========================================================
+function initLanguageSwitcher() {
+  const translations = {
+    ko: {
+      invitation: `<p><strong>Hawkeye: Past, Present, and Future</strong></p>
+      <br/>
+      <p>한 해를 돌아보며, 함께 웃고 추억하는 시간.</p>
+      <br/>
+      <p>Hawkeye 동문과 함께하는 이 밤이 올해의 가장 따뜻한 순간이 되길 바라며 여러분을 초대합니다.</p>
+      <br/>
+      <p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+      eventInfo: "📅 행사 정보",
+      date: "일시",
+      location: "장소",
+      address: "주소",
+      fee: "회비",
+      contact: "문의",
+      rsvp: "📋 참석 신청"
+    },
+    en: {
+      invitation: `<p><strong>Hawkeye: Past, Present, and Future</strong></p>
+      <br/>
+      <p>A time to look back on the past, laugh, and reminisce together.</p>
+      <br/>
+      <p>We hope that this night with fellow Hawkeyes will be the warmest moment of the year.</p>
+      <br/>
+      <p>We cordially invite you to join us.</p>
+      <br/>
+      <p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+      eventInfo: "📅 Event Information",
+      date: "Date & Time",
+      location: "Venue",
+      address: "Address",
+      fee: "Fee",
+      contact: "Contact",
+      rsvp: "📋 RSVP"
+    }
+  };
+
+  const btns = document.querySelectorAll(".lang-btn");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      setLanguage(btn.dataset.lang);
+    });
+  });
+
+  function setLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    document.getElementById("invitationText").innerHTML = t.invitation;
+    document.querySelector(".event-info h2").textContent = t.eventInfo;
+    document.querySelector(".rsvp-section h2").textContent = t.rsvp;
+    const items = document.querySelectorAll(".event-info .info-item");
+    if (items.length >= 5) {
+      items[0].querySelector(".info-label").textContent = t.date;
+      items[1].querySelector(".info-label").textContent = t.location;
+      items[2].querySelector(".info-label").textContent = t.address;
+      items[3].querySelector(".info-label").textContent = t.fee;
+      items[4].querySelector(".info-label").textContent = t.contact;
+    }
+  }
 }
