@@ -212,8 +212,7 @@ body {
 .radio-item {
   display: flex;
   align-items: center;
-  margin-bottom: 0;    /* 불필요 간격 없애기 */
-  min-height: 28px;    /* 너무 붙지 않게만 설정, 조절 가능 */
+  margin-bottom: 0;
 }
 
 .radio-item input[type="radio"] {
@@ -221,12 +220,15 @@ body {
   height: 18px;
   accent-color: var(--color-primary);
   margin-right: 8px;
+  vertical-align: middle;
 }
 
 .radio-item label {
   font-size: 14px;
   cursor: pointer;
   margin: 0;
+  vertical-align: middle;
+  font-weight: 400;
 }
 
 .radio-item .form-hint {
@@ -234,6 +236,7 @@ body {
   margin-left: 8px;
   font-size: 13px;
   color: #777;
+  vertical-align: middle;
 }
 .submit-btn {
   width: 100%;
