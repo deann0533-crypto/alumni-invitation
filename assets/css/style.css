@@ -206,15 +206,13 @@ body {
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* 항목 간 간격 작게 */
+  gap: 4px;
 }
-
 .radio-item {
   display: flex;
   align-items: center;
   margin-bottom: 0;
 }
-
 .radio-item input[type="radio"] {
   width: 18px;
   height: 18px;
@@ -222,15 +220,15 @@ body {
   margin-right: 8px;
   vertical-align: middle;
 }
-
 .radio-item label {
   font-size: 14px;
+  font-weight: 400;
   cursor: pointer;
   margin: 0;
   vertical-align: middle;
-  font-weight: 400;
+  min-width: 48px;
+  display: inline-block;
 }
-
 .radio-item .form-hint {
   display: inline;
   margin-left: 8px;
