@@ -217,19 +217,19 @@ body {
   line-height: 1.4;
 }
 /* =========================================================
-   찐 마지막 수정: 'Car' 힌트 정렬 최종본
+   찐찐 마지막 수정: 'Car' 힌트 정렬 (강제 !important)
    ========================================================= */
 /*
-   #carHint 힌트가 줄바꿈되고 들여쓰기되는 모든 문제를
-   이 ID 규칙으로 덮어씁니다.
+  !important를 사용하여 다른 모든 CSS 규칙을 덮어쓰고
+  'Car' 힌트의 스타일을 강제로 지정합니다.
 */
 #carHint {
-  display: inline;         /* 1. 같은 줄에 배치 */
-  margin-left: 5px;       /* 2. 'Car' 라벨과 5px 간격 (적당한 거리) */
-  margin-top: 0;           /* 3. (중요) 기존 margin-top: 4px를 무효화 */
-  vertical-align: middle;  /* 4. 라벨 텍스트와 세로 중앙 정렬 */
-  font-size: 13px;         /* (기존 스타일 유지) */
-  color: #777;            /* (기존 스타일 유지) */
+  display: inline !important;       /* 1. (강제) 같은 줄에 배치 */
+  margin-top: 0 !important;         /* 2. (강제) 위쪽 여백 0으로 정렬 통일 */
+  margin-left: 5px !important;      /* 3. (강제) 왼쪽 여백 5px로 고정 */
+  vertical-align: middle !important; /* 4. (강제) 세로 중앙 정렬 */
+  color: #777;                    /* (기존 스타일 상속) */
+  font-size: 13px;                /* (기존 스타일 상속) */
 }
 .submit-btn {
   width: 100%;
