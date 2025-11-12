@@ -207,12 +207,20 @@ body {
 .radio-item {
   display: block; /* 또는 기본값 (지워도 됨) */
 }
-.radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
-.radio-item label { font-size: 14px; cursor: pointer; margin: 8px; }
-
+.radio-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  margin-right: 8px; /* 라디오 버튼과 텍스트 사이 간격 추가 */
+}
+.radio-item label {
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0; /* 불필요 여백 제거 */
+}
 .radio-item .form-hint {
   display: inline;
-  margin-left: 4px;
+  margin-left: 4px; /* 설명 텍스트와 라벨 사이 적당한 간격 유지 */
   font-size: 13px;
   color: #777;
 }
