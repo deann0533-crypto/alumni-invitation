@@ -208,11 +208,10 @@ body {
   display: block; /* 또는 기본값 (지워도 됨) */
 }
 .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
-.radio-item label { font-size: 14px; cursor: pointer; margin: 0; }
+.radio-item label { font-size: 14px; cursor: pointer; margin: 8px; }
 
 .radio-item .form-hint {
   display: inline;
-  margin-left: 4px;
   font-size: 13px;
   color: #777;
 }
