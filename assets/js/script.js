@@ -1,51 +1,54 @@
 // =========================================================
 // Iowa Club Korea 2025 - FINAL VERIFIED BILINGUAL VERSION
+// (DOMContentLoaded 제거 버전)
 // =========================================================
 
 let currentLang = "ko";
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 지도 버튼
-  const openMapBtn = document.getElementById("openMapBtn");
-  openMapBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    openMap();
-  });
+// 💡 실행 시점을 DOMContentLoaded -> 즉시 실행으로 변경
+// (HTML의 defer 속성이 DOM 로드를 이미 보장함)
 
-  // RSVP 제출
-  const form = document.getElementById("rsvp-form");
-  form?.addEventListener("submit", submitRSVP);
-
-  // 복사 버튼
-  const copyBtn = document.getElementById("copyAccountBtn");
-  copyBtn?.addEventListener("click", async () => {
-    const account =
-      copyBtn.dataset.account ||
-      document.querySelector(".account-number")?.textContent?.trim();
-    if (!account) return;
-
-    const copyText = currentLang === "en" ? "Copied!" : "복사됨!";
-    const original = currentLang === "en" ? "Copy" : "복사";
-
-    try {
-      await navigator.clipboard.writeText(account);
-      copyBtn.textContent = copyText;
-      copyBtn.disabled = true;
-      setTimeout(() => {
-        copyBtn.textContent = original;
-        copyBtn.disabled = false;
-      }, 1200);
-    } catch {
-      document.execCommand("copy");
-      copyBtn.textContent = copyText;
-      setTimeout(() => (copyBtn.textContent = original), 1200);
-    }
-  });
-
-  // 초기 상태
-  setTransportFields("");
-  initLanguageSwitcher();
+// 지도 버튼
+const openMapBtn = document.getElementById("openMapBtn");
+openMapBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+  openMap();
 });
+
+// RSVP 제출
+const form = document.getElementById("rsvp-form");
+form?.addEventListener("submit", submitRSVP);
+
+// 복사 버튼
+const copyBtn = document.getElementById("copyAccountBtn");
+copyBtn?.addEventListener("click", async () => {
+  const account =
+    copyBtn.dataset.account ||
+    document.querySelector(".account-number")?.textContent?.trim();
+  if (!account) return;
+
+  const copyText = currentLang === "en" ? "Copied!" : "복사됨!";
+  const original = currentLang === "en" ? "Copy" : "복사";
+
+  try {
+    await navigator.clipboard.writeText(account);
+    copyBtn.textContent = copyText;
+    copyBtn.disabled = true;
+    setTimeout(() => {
+      copyBtn.textContent = original;
+      copyBtn.disabled = false;
+    }, 1200);
+  } catch {
+    document.execCommand("copy");
+    copyBtn.textContent = copyText;
+    setTimeout(() => (copyBtn.textContent = original), 1200);
+  }
+});
+
+// 초기 상태
+setTransportFields("");
+initLanguageSwitcher();
+
 
 // =========================================================
 // 교통수단 토글
@@ -175,7 +178,6 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ 오시는 길",
       mapButton: "📍 지도 앱으로 보기",
       eventInfo: "📅 행사 정보",
-      // [수정됨] 행사 정보 상세 내용을 객체에 포함
       eventDetails: {
         labels: ["일시", "장소", "주소", "회비", "문의"],
         values: [
@@ -226,7 +228,6 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ Directions",
       mapButton: "📍 View in Map App",
       eventInfo: "📅 Event Information",
-      // [수정됨] 행사 정보 상세 내용을 객체에 포함
       eventDetails: {
         labels: ["Date & Time", "Venue", "Address", "Fee", "Contact"],
         values: [
@@ -297,7 +298,7 @@ function initLanguageSwitcher() {
     const guide = document.querySelector(".transport-guide");
     if (guide) guide.innerHTML = tt.transportGuideHTML;
 
-    // [신규 추가] 행사 정보 상세 내용 번역
+    // 행사 정보 상세 내용 번역
     const infoItems = document.querySelectorAll(".event-info .info-item");
     if (tt.eventDetails && infoItems.length >= tt.eventDetails.labels.length) {
       infoItems.forEach((item, index) => {
@@ -308,4 +309,50 @@ function initLanguageSwitcher() {
           label.textContent = tt.eventDetails.labels[index];
         }
         if (value && tt.eventDetails.values[index]) {
-          value
+          value.innerHTML = tt.eventDetails.values[index];
+        }
+      });
+    }
+
+    // Placeholder
+    const ids = ["graduationYear", "major", "email", "phone", "carNumber", "transportOther"];
+    const keys = ["year", "major", "email", "phone", "car", "other"];
+    ids.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.placeholder = tt.placeholders[keys[i]];
+    });
+
+    // 연령대
+    document.querySelectorAll('input[name="ageGroup"] + label').forEach((l, i) => {
+      l.textContent = tt.age[i];
+    });
+    // 연령대 값(value)도 변경 (제출 데이터 일관성)
+    document.querySelectorAll('input[name="ageGroup"]').forEach((radio, i) => {
+      radio.value = tt.age[i];
+    });
+
+    // 교통수단
+    document.querySelectorAll('input[name="transport"] + label').forEach((l, i) => {
+      l.textContent = tt.transport[i];
+    });
+    // 교통수단 값(value)도 변경
+    document.querySelectorAll('input[name="transport"]').forEach((radio, i) => {
+      radio.value = tt.transport[i];
+    });
+
+    // 입금완료
+    document.querySelector('label[for="paidYes"]').textContent = tt.payment;
+    document.getElementById('paidYes').value = tt.payment; // 값도 변경
+
+    // 복사버튼
+    document.getElementById("copyAccountBtn").textContent = tt.copy;
+
+    // 현재 폼 상태에 따라 교통수단 필드 다시 설정
+    const currentTransport = document.querySelector('input[name="transport"]:checked');
+    if (currentTransport) {
+      setTransportFields(currentTransport.value);
+    } else {
+      setTransportFields("");
+    }
+  }
+}
