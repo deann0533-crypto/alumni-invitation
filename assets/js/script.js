@@ -1,20 +1,17 @@
 // =========================================================
-// Iowa Club Korea 2025 - Full Bilingual Script
+// Iowa Club Korea 2025 - Full Bilingual Script (All Form Labels + Notes)
 // =========================================================
 
 let currentLang = "ko";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 지도 버튼
   document.getElementById("openMapBtn")?.addEventListener("click", (e) => {
     e.preventDefault();
     openMap();
   });
 
-  // RSVP 제출
   document.getElementById("rsvp-form")?.addEventListener("submit", submitRSVP);
 
-  // 계좌 복사 버튼
   const copyBtn = document.getElementById("copyAccountBtn");
   copyBtn?.addEventListener("click", async () => {
     const account =
@@ -40,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 초기 상태
   setTransportFields("");
   initLanguageSwitcher();
 });
@@ -104,14 +100,31 @@ function submitRSVP(e) {
     "transport"
   ];
   for (const f of required)
-    if (!formData.get(f)) return alert("모든 필수 입력칸을 정확히 채워주세요.");
+    if (!formData.get(f))
+      return alert(
+        currentLang === "en"
+          ? "Please fill out all required fields."
+          : "모든 필수 입력칸을 정확히 채워주세요."
+      );
 
   if (formData.get("transport") === "자차" && !formData.get("carNumber"))
-    return alert("자차 이용 시 차량번호를 입력해 주세요.");
+    return alert(
+      currentLang === "en"
+        ? "Please enter your vehicle number if you drive."
+        : "자차 이용 시 차량번호를 입력해 주세요."
+    );
   if (formData.get("transport") === "기타" && !formData.get("transportOther"))
-    return alert("기타 교통수단을 입력해 주세요.");
+    return alert(
+      currentLang === "en"
+        ? "Please enter your transportation method."
+        : "기타 교통수단을 입력해 주세요."
+    );
   if (formData.get("payment") !== "입금 완료")
-    return alert("참가비 입금 후 '입금 완료'를 선택해 주세요.");
+    return alert(
+      currentLang === "en"
+        ? "Please confirm payment before proceeding."
+        : "참가비 입금 후 '입금 완료'를 선택해 주세요."
+    );
 
   fetch(
     "https://docs.google.com/forms/d/1c9Y_Vjp3wHbWFum47AF-fcDROZGrrapNJQxCTWFuduk/formResponse",
@@ -147,13 +160,20 @@ function initLanguageSwitcher() {
       mapButton: "📍 지도 앱으로 보기",
       transportGuide: "대중교통 안내",
       eventInfo: "📅 행사 정보",
-      date: "일시",
-      location: "장소",
-      address: "주소",
-      fee: "회비",
-      contact: "문의",
       rsvp: "📋 참석 신청",
       submitBtn: "참석 신청하기",
+      labels: {
+        name: "이름 *",
+        year: "졸업년도 *",
+        age: "연령대 *",
+        major: "전공 *",
+        email: "이메일 *",
+        phone: "연락처 *",
+        payment: "참가비 입금 확인 *",
+        transport: "오시는 경로 *",
+        otherTransport: "기타 교통수단",
+        carNumber: "차량번호"
+      },
       placeholders: {
         year: "예: 2020",
         major: "예: 경영학과",
@@ -162,7 +182,7 @@ function initLanguageSwitcher() {
         car: "예: 12가3456",
         other: "교통수단을 입력해주세요"
       },
-      radioAge: [
+      ageOptions: [
         "만 20~24세",
         "만 25~29세",
         "만 30~34세",
@@ -172,13 +192,10 @@ function initLanguageSwitcher() {
         "만 50세 이상"
       ],
       transportOptions: ["대중교통", "자차", "기타"],
-      payment: "입금 완료",
+      paymentRadio: "입금 완료",
       copy: "복사",
-      bankLabel: "입금 계좌:",
-      transportGuideHTML: `
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚇</span><strong>지하철</strong></div><div class="transport-desc"><p><strong>5, 9호선 여의도역</strong> 3번 출구, IFC몰 연결통로 이용, 도보 15분</p><p><strong>5호선 여의나루역</strong> 1번 출구에서 도보 10분</p></div></div>
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚌</span><strong>버스</strong></div><div class="transport-desc"><p><strong>여의도환승센터</strong> 하차 (도보 5분)</p><p class="bus-numbers">160, 260, 261, 262, 360, 461, 600, 503, 753 등</p></div></div>
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚗</span><strong>자차</strong></div><div class="transport-desc"><p>더현대서울 지하 주차장 이용</p><p class="parking-info">참석자에 한해 <strong>주차 할인</strong> 지원<br/>(차량번호 사전 등록 필수)</p></div></div>`
+      parkingHint: "주차 할인 사전 등록 필수",
+      bankLabel: "입금 계좌:"
     },
     en: {
       invitation: `<p><strong>Hawkeyes: Past, Present, and Future</strong></p><br/>
@@ -189,13 +206,20 @@ function initLanguageSwitcher() {
       mapButton: "📍 View in Map App",
       transportGuide: "Public Transportation",
       eventInfo: "📅 Event Information",
-      date: "Date & Time",
-      location: "Venue",
-      address: "Address",
-      fee: "Fee",
-      contact: "Contact",
       rsvp: "📋 RSVP",
       submitBtn: "Submit RSVP",
+      labels: {
+        name: "Name *",
+        year: "Graduation Year *",
+        age: "Age Group *",
+        major: "Major *",
+        email: "Email *",
+        phone: "Phone Number *",
+        payment: "Payment Confirmation *",
+        transport: "Transportation Method *",
+        otherTransport: "Other Transportation",
+        carNumber: "Vehicle Number"
+      },
       placeholders: {
         year: "e.g. 2020",
         major: "e.g. Business Administration",
@@ -204,7 +228,7 @@ function initLanguageSwitcher() {
         car: "e.g. 12가3456",
         other: "Please enter your transportation method"
       },
-      radioAge: [
+      ageOptions: [
         "Age 20–24",
         "Age 25–29",
         "Age 30–34",
@@ -214,13 +238,10 @@ function initLanguageSwitcher() {
         "Age 50+"
       ],
       transportOptions: ["Public Transport", "Car", "Other"],
-      payment: "Payment Completed",
+      paymentRadio: "Payment Completed",
       copy: "Copy",
-      bankLabel: "Bank Account:",
-      transportGuideHTML: `
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚇</span><strong>Subway</strong></div><div class="transport-desc"><p><strong>Yeouido Station (Lines 5 & 9)</strong> Exit 3 – 15 min walk via IFC Mall</p><p><strong>Yeouinaru Station (Line 5)</strong> Exit 1 – 10 min walk</p></div></div>
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚌</span><strong>Bus</strong></div><div class="transport-desc"><p><strong>Yeouido Transfer Center</strong> stop (5-min walk)</p><p class="bus-numbers">160, 260, 261, 262, 360, 461, 600, 503, 753</p></div></div>
-        <div class="transport-item"><div class="transport-title"><span class="icon">🚗</span><strong>Car</strong></div><div class="transport-desc"><p>Use The Hyundai Seoul underground parking</p><p class="parking-info">Parking discount provided for attendees<br/>(vehicle registration required)</p></div></div>`
+      parkingHint: "Vehicle registration required for parking discount",
+      bankLabel: "Bank Account:"
     }
   };
 
@@ -239,12 +260,25 @@ function initLanguageSwitcher() {
     document.querySelector(".map-section h2").textContent = tt.mapSection;
     document.getElementById("openMapBtn").textContent = tt.mapButton;
     document.querySelector(".transport-guide h3").textContent = tt.transportGuide;
-    document.querySelector(".transport-guide").innerHTML =
-      `<h3>${tt.transportGuide}</h3>` + tt.transportGuideHTML;
-
     document.querySelector(".event-info h2").textContent = tt.eventInfo;
     document.querySelector(".rsvp-section h2").textContent = tt.rsvp;
     document.querySelector(".submit-btn").textContent = tt.submitBtn;
+
+    // Form 라벨
+    document.querySelector('label[for="name"]').textContent = tt.labels.name;
+    document.querySelector('label[for="graduationYear"]').textContent =
+      tt.labels.year;
+    document.querySelector(".form-group .form-label:nth-of-type(3)").textContent =
+      tt.labels.age;
+    document.querySelector('label[for="major"]').textContent = tt.labels.major;
+    document.querySelector('label[for="email"]').textContent = tt.labels.email;
+    document.querySelector('label[for="phone"]').textContent = tt.labels.phone;
+    document.querySelectorAll(".form-label")[6].textContent = tt.labels.payment;
+    document.querySelectorAll(".form-label")[7].textContent = tt.labels.transport;
+    document.querySelector('label[for="transportOther"]').textContent =
+      tt.labels.otherTransport;
+    document.querySelector('label[for="carNumber"]').textContent =
+      tt.labels.carNumber;
 
     // Placeholder
     document.getElementById("graduationYear").placeholder = tt.placeholders.year;
@@ -254,16 +288,16 @@ function initLanguageSwitcher() {
     document.getElementById("carNumber").placeholder = tt.placeholders.car;
     document.getElementById("transportOther").placeholder = tt.placeholders.other;
 
-    // 라디오 연령대
+    // 연령대
     const ageLabels = document.querySelectorAll('input[name="ageGroup"] + label');
-    ageLabels.forEach((label, i) => (label.textContent = tt.radioAge[i]));
+    ageLabels.forEach((l, i) => (l.textContent = tt.ageOptions[i]));
 
-    // 교통수단 선택지
+    // 교통수단
     const transportLabels = document.querySelectorAll('input[name="transport"] + label');
-    transportLabels.forEach((label, i) => (label.textContent = tt.transportOptions[i]));
+    transportLabels.forEach((l, i) => (l.textContent = tt.transportOptions[i]));
 
-    // 입금 완료 라벨
-    document.querySelector('label[for="paidYes"]').textContent = tt.payment;
+    // 입금 확인
+    document.querySelector('label[for="paidYes"]').textContent = tt.paymentRadio;
 
     // 복사 버튼
     const copyBtn = document.getElementById("copyAccountBtn");
@@ -271,5 +305,10 @@ function initLanguageSwitcher() {
 
     // 계좌 라벨
     document.querySelector("#bankAccountText strong").textContent = tt.bankLabel;
+
+    // 주차 문구
+    document.querySelectorAll(".form-hint").forEach((h) => {
+      if (h.textContent.includes("주차")) h.textContent = tt.parkingHint;
+    });
   }
 }
