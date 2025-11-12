@@ -238,7 +238,7 @@ function initLanguageSwitcher() {
       mapButton: "📍 View in Map App",
       eventInfo: "📅 Event Information",
       eventDetails: {
-        labels: ["Date & Time", "Venue", "Address", "Fee", "Contact"],
+        labels: ["Date & Time", "Venue", "Address", "Attendance Fee", "Contact"],
         values: [
           "Dec 12, 2025 (Fri) · 6:30–9:30 PM",
           `Switch22, Tower 2, Parc.1, Yeouido<div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)</div>`,
@@ -267,7 +267,7 @@ function initLanguageSwitcher() {
         year: "e.g. 2020",
         major: "e.g. Business Administration",
         email: "example@email.com",
-        phone: "01012345678 (KR format)",
+        phone: "013194590032",
         car: "e.g. 12가3456",
         other: "Please enter your transportation method"
       },
