@@ -537,17 +537,31 @@ body {
   text-align: right;
   margin: 12px 20px 0 0;
 }
+
 .lang-btn {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 5px 10px;
-  margin-left: 6px;
-  font-size: 13px;
+  background: #f5f7fa; /* 연한 그레이 배경 */
+  border: 1.5px solid var(--color-primary);
+  border-radius: 14px; /* 둥근 형태 강조 */
+  padding: 6px 14px;
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(44, 74, 125, 0.15); /* 부드러운 그림자 */
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
+
 .lang-btn.active {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(44, 74, 125, 0.4);
 }
+
+.lang-btn:hover:not(.active) {
+  background: var(--color-primary-light);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(44, 74, 125, 0.3);
+}
+
