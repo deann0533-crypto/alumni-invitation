@@ -203,31 +203,34 @@ body {
 }
 .form-control:focus { outline: none; border-color: var(--color-primary); }
 
-.radio-item {
+.radio-group {
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.radio-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
   margin-bottom: 0;
 }
-
 .radio-item input[type="radio"] {
+  grid-column: 1;
   margin-right: 8px;
 }
-
 .radio-item label {
+  grid-column: 2;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
   margin: 0;
-  min-width: 56px;     /* 여기를 조정할 것! */
-  flex-shrink: 0;
-  display: inline-block;
 }
-
 .radio-item .form-hint {
-  display: inline;
+  grid-column: 2;
   margin-left: 8px;
   font-size: 13px;
   color: #777;
+  display: inline;
 }
 .submit-btn {
   width: 100%;
