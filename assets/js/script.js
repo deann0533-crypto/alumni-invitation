@@ -1,6 +1,6 @@
 // =========================================================
 // Iowa Club Korea 2025 - FINAL VERIFIED BILINGUAL VERSION
-// (Syntax Error FIXED)
+// (Parking Hint Translation ADDED)
 // =========================================================
 
 let currentLang = "ko";
@@ -200,7 +200,8 @@ function initLanguageSwitcher() {
         bankDetailsHTML: '💳 <strong>입금 계좌:</strong><br/>토스뱅크 이환석 <span class="account-number">1001-4865-4491</span>',
         transport: "오시는 경로 *",
         carNumber: "차량번호",
-        otherTransport: "기타 교통수단"
+        otherTransport: "기타 교통수단",
+        carHint: "주차 할인 사전 등록 필수" // <-- 💡 여기 추가됨
       },
       placeholders: {
         year: "예: 2020",
@@ -241,9 +242,9 @@ function initLanguageSwitcher() {
         values: [
           "Dec 12, 2025 (Fri) · 6:30–9:30 PM",
           `Switch22, Tower 2, Parc.1, Yeouido<div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)</div>`,
-          "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul", // <-- 'G' 오타 수정됨
+          "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
           "₩50,000 per person",
-          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)` // <-- 'D' 오타 수정됨
+          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)`
         ]
       },
       rsvp: "📋 RSVP",
@@ -259,7 +260,8 @@ function initLanguageSwitcher() {
         bankDetailsHTML: '💳 <strong>Bank Account:</strong><br/>Toss Bank Hwanseok Lee <span class="account-number">1001-4865-4491</span>',
         transport: "Transportation *",
         carNumber: "Vehicle Number",
-        otherTransport: "Other (Please specify)"
+        otherTransport: "Other (Please specify)",
+        carHint: "Parking discount requires pre-registration" // <-- 💡 여기 추가됨
       },
       placeholders: {
         year: "e.g. 2020",
@@ -338,21 +340,23 @@ function initLanguageSwitcher() {
       document.querySelector('label[for="phone"]').textContent = labels.phone;
       document.querySelector('label[for="carNumber"]').textContent = labels.carNumber;
       document.querySelector('label[for="transportOther"]').textContent = labels.otherTransport;
-      // <-- 'G' 오타 수정됨
-      
+      
       // 2. 'name' 속성으로 부모에서 찾기 (for가 없는 라벨들)
       const ageLabel = document.querySelector('input[name="ageGroup"]')?.closest('.form-group')?.querySelector('.form-label');
       if (ageLabel) ageLabel.textContent = labels.age;
-      
+      
       const paymentLabel = document.querySelector('input[name="payment"]')?.closest('.form-group')?.querySelector('.form-label');
       if (paymentLabel) paymentLabel.textContent = labels.payment;
-      
+      
       const transportLabel = document.querySelector('input[name="transport"]')?.closest('.form-group')?.querySelector('.form-label');
       if (transportLabel) transportLabel.textContent = labels.transport;
 
-      // 3. ID로 찾기 (계좌)
+      // 3. ID로 찾기 (계좌 및 힌트)
       const bankText = document.getElementById('bankAccountText');
       if (bankText) bankText.innerHTML = labels.bankDetailsHTML;
+
+      const carHint = document.getElementById('carHint'); // <-- 💡 여기 추가됨
+      if (carHint) carHint.textContent = labels.carHint;  // <-- 💡 여기 추가됨
     }
 
     // Placeholder
