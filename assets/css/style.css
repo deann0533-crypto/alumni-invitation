@@ -208,13 +208,15 @@ body {
 .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
 .radio-item label { font-size: 14px; cursor: pointer; margin: 0; }
 
-/* 자차 안내문 */
+/* 자차 안내문 (한 줄 정렬용 수정) */
 .radio-item .form-hint {
-  margin-top: 4px;
-  margin-left: 28px;
+  display: inline-block;
+  margin: 0 0 0 6px;
   font-size: 13px;
   color: #777;
   line-height: 1.4;
+  position: relative;
+  top: 0.5px; /* 살짝 올려서 라벨과 수평 정렬 */
 }
 /* =========================================================
    찐찐 마지막 수정: 'Car' 힌트 정렬 (강제 !important)
@@ -224,12 +226,13 @@ body {
   'Car' 힌트의 스타일을 강제로 지정합니다.
 */
 #carHint {
-  display: inline !important;       /* 1. (강제) 같은 줄에 배치 */
-  margin-top: 0 !important;         /* 2. (강제) 위쪽 여백 0으로 정렬 통일 */
-  margin-left: 5px !important;      /* 3. (강제) 왼쪽 여백 5px로 고정 */
-  vertical-align: middle !important; /* 4. (강제) 세로 중앙 정렬 */
-  color: #777;                    /* (기존 스타일 상속) */
-  font-size: 13px;                /* (기존 스타일 상속) */
+  display: inline-block;
+  margin: 0 0 0 6px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+  position: relative;
+  top: 0.5px; /* 아주 살짝 올림으로 라벨과 수평 맞춤 */
 }
 .submit-btn {
   width: 100%;
