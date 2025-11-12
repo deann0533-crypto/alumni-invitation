@@ -216,16 +216,18 @@ body {
   color: #777;
   line-height: 1.4;
 }
-/* 라디오 옆 붙는 힌트 */
-#car + label + .form-hint {
-  display: inline;
-  margin-left: 1px;
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-  vertical-align: middle;
+/* [수정] 'Car' 힌트가 들여쓰기 되는 문제 수정.
+  (기존의 #car + label + ... 규칙은 HTML 공백에 취약하여 삭제)
+  #carHint ID로 직접 지정하여 인라인(inline)으로 붙입니다.
+*/
+#carHint {
+  display: inline;
+  margin-left: 1px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+  vertical-align: middle;
 }
-
 .submit-btn {
   width: 100%;
   padding: 15px;
