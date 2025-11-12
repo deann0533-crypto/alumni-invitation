@@ -212,6 +212,7 @@ body {
 
 .radio-item .form-hint {
   display: inline;
+  margin-left: 4px;
   font-size: 13px;
   color: #777;
 }
