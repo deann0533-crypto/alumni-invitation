@@ -208,29 +208,38 @@ body {
   flex-direction: column;
   gap: 4px;
 }
+
 .radio-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
+  display: flex;
+  align-items: center;   /* baseline이나 flex-start로 놔도 됨 */
   margin-bottom: 0;
+  min-height: 24px;
 }
+
 .radio-item input[type="radio"] {
-  grid-column: 1;
   margin-right: 8px;
+  flex-shrink: 0;
 }
+
 .radio-item label {
-  grid-column: 2;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
   margin: 0;
+  min-width: 54px;      /* "대중교통" 텍스트를 기준으로 맞춰 조절 */
+  flex-shrink: 0;
 }
+
 .radio-item .form-hint {
-  grid-column: 2;
+  display: inline;
+  white-space: nowrap;
   margin-left: 8px;
   font-size: 13px;
   color: #777;
-  display: inline;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;     /* 필요시 조정 */
 }
 .submit-btn {
   width: 100%;
