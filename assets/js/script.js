@@ -1,12 +1,12 @@
 // =========================================================
 // Iowa Club Korea 2025 - FINAL VERIFIED BILINGUAL VERSION
-// (DOMContentLoaded 제거 버전)
+// (Form Label Translation FIXED)
 // =========================================================
 
 let currentLang = "ko";
 
-// 💡 실행 시점을 DOMContentLoaded -> 즉시 실행으로 변경
-// (HTML의 defer 속성이 DOM 로드를 이미 보장함)
+// 💡 DOMContentLoaded를 제거하고 defer 속성에 의존
+// (이전 '버튼 먹통' 이슈 해결책 적용됨)
 
 // 지도 버튼
 const openMapBtn = document.getElementById("openMapBtn");
@@ -47,8 +47,7 @@ copyBtn?.addEventListener("click", async () => {
 
 // 초기 상태
 setTransportFields("");
-initLanguageSwitcher();
-
+initLanguageSwitcher(); // 언어 스위처 실행
 
 // =========================================================
 // 교통수단 토글
@@ -178,18 +177,32 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ 오시는 길",
       mapButton: "📍 지도 앱으로 보기",
       eventInfo: "📅 행사 정보",
-      eventDetails: {
-            labels: ["일시", "장소", "주소", "회비", "문의"],
-            values: [
-                "2025년 12월 12일 (금) 오후 6시 30분 ~ 9시 30분",
-                `여의도 파크원 타워2 스위치22<div class="event-info-note">타워2 1층 저층부 엘리베이터 앞 아이오와 동문회 행사 진행원의 안내를 받아 입장 (지하 1층은 입장 불가)</div>`,
-                "서울특별시 영등포구 여의대로 108 파크원 타워2 22층",
-                "1인 50,000원",
-                `이환석 (<a href="tel:01089674981">010-8967-4981</a>)<br/>문정호 (<a href="tel:01026786495">010-2678-6495</a>)`
-              ]
-            },
+      eventDetails: { // (정렬 문제 수정 완료)
+        labels: ["일시", "장소", "주소", "회비", "문의"],
+        values: [
+          "2025년 12월 12일 (금) 오후 6시 30분 ~ 9시 30분",
+          `여의도 파크원 타워2 스위치22<div class="event-info-note">타워2 1층 저층부 엘리베이터 앞 아이오와 동문회 행사 진행원의 안내를 받아 입장 (지하 1층은 입장 불가)</div>`,
+          "서울특별시 영등포구 여의대로 108 파크원 타워2 22층",
+          "1인 50,000원",
+          `이환석 (<a href="tel:01089674981">010-8967-4981</a>)<br/>문정호 (<a href="tel:01026786495">010-2678-6495</a>)`
+        ]
+      },
       rsvp: "📋 참석 신청",
       submitBtn: "참석 신청하기",
+      // [신규 추가] 폼 라벨
+      formLabels: {
+        name: "이름 *",
+        year: "졸업년도 *",
+        age: "연령대 *",
+        major: "전공 *",
+        email: "이메일 *",
+        phone: "연락처 *",
+        payment: "참가비 입금 확인 *",
+        bankDetailsHTML: '💳 <strong>입금 계좌:</strong><br/>토스뱅크 이환석 <span class="account-number">1001-4865-4491</span>',
+        transport: "오시는 경로 *",
+        carNumber: "차량번호",
+        otherTransport: "기타 교통수단"
+      },
       placeholders: {
         year: "예: 2020",
         major: "예: 경영학과",
@@ -224,18 +237,32 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ Directions",
       mapButton: "📍 View in Map App",
       eventInfo: "📅 Event Information",
-      eventDetails: {
-        labels: ["Date & Time", "Venue", "Address", "Fee", "Contact"],
-        values: [
-          "Dec 12, 2025 (Fri) · 6:30–9:30 PM",
-          `Switch22, Tower 2, Parc.1, Yeouido<div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)</div>`,
-          "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
-          "₩50,000 per person",
-          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)`
-        ]
-      },
+      eventDetails: { // (정렬 문제 수정 완료)
+        labels: ["Date & Time", "Venue", "Address", "Fee", "Contact"],
+        values: [
+          "Dec 12, 2025 (Fri) · 6:30–9:30 PM",
+          `Switch22, Tower 2, Parc.1, Yeouido<div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)</div>`,
+G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+          "₩50,000 per person",
+          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:0D1026786495">010-2678-6495</a>)`
+        ]
+      },
       rsvp: "📋 RSVP",
       submitBtn: "Submit RSVP",
+      // [신규 추가] 폼 라벨
+      formLabels: {
+        name: "Name *",
+        year: "Graduation Year *",
+        age: "Age Group *",
+        major: "Major *",
+        email: "Email *",
+        phone: "Contact *",
+        payment: "Payment Confirmation *",
+        bankDetailsHTML: '💳 <strong>Bank Account:</strong><br/>Toss Bank Hwanseok Lee <span class="account-number">1001-4865-4491</span>',
+        transport: "Transportation *",
+        carNumber: "Vehicle Number",
+        otherTransport: "Other (Please specify)"
+      },
       placeholders: {
         year: "e.g. 2020",
         major: "e.g. Business Administration",
@@ -274,6 +301,7 @@ function initLanguageSwitcher() {
     })
   );
 
+  // 💡 언어 설정 함수 (라벨 번역 기능 추가됨)
   function setLang(tt) {
     // 초대문
     document.getElementById("invitationText")?.replaceChildren();
@@ -290,20 +318,42 @@ function initLanguageSwitcher() {
     const guide = document.querySelector(".transport-guide");
     if (guide) guide.innerHTML = tt.transportGuideHTML;
 
-    // 행사 정보 상세 내용 번역
+    // 행사 정보 상세 내용 (정렬 수정 완료)
     const infoItems = document.querySelectorAll(".event-info .info-item");
     if (tt.eventDetails && infoItems.length >= tt.eventDetails.labels.length) {
       infoItems.forEach((item, index) => {
         const label = item.querySelector(".info-label");
         const value = item.querySelector(".info-value");
-        
-        if (label && tt.eventDetails.labels[index]) {
-          label.textContent = tt.eventDetails.labels[index];
-        }
-        if (value && tt.eventDetails.values[index]) {
-          value.innerHTML = tt.eventDetails.values[index];
-        }
+        if (label) label.textContent = tt.eventDetails.labels[index];
+        if (value) value.innerHTML = tt.eventDetails.values[index];
       });
+    }
+
+    // [신규 추가] 폼 라벨 번역
+    const labels = tt.formLabels;
+    if (labels) {
+      // 1. 'for' 속성으로 찾기
+      document.querySelector('label[for="name"]').textContent = labels.name;
+      document.querySelector('label[for="graduationYear"]').textContent = labels.year;
+      document.querySelector('label[for="major"]').textContent = labels.major;
+      document.querySelector('label[for="email"]').textContent = labels.email;
+      document.querySelector('label[for="phone"]').textContent = labels.phone;
+      document.querySelector('label[for="carNumber"]').textContent = labels.carNumber;
+      document.querySelector('label[for="transportOther"]').textContent = labels.otherTransport;
+G
+      // 2. 'name' 속성으로 부모에서 찾기 (for가 없는 라벨들)
+      const ageLabel = document.querySelector('input[name="ageGroup"]')?.closest('.form-group')?.querySelector('.form-label');
+      if (ageLabel) ageLabel.textContent = labels.age;
+      
+      const paymentLabel = document.querySelector('input[name="payment"]')?.closest('.form-group')?.querySelector('.form-label');
+      if (paymentLabel) paymentLabel.textContent = labels.payment;
+      
+      const transportLabel = document.querySelector('input[name="transport"]')?.closest('.form-group')?.querySelector('.form-label');
+      if (transportLabel) transportLabel.textContent = labels.transport;
+
+      // 3. ID로 찾기 (계좌)
+      const bankText = document.getElementById('bankAccountText');
+      if (bankText) bankText.innerHTML = labels.bankDetailsHTML;
     }
 
     // Placeholder
@@ -318,7 +368,6 @@ function initLanguageSwitcher() {
     document.querySelectorAll('input[name="ageGroup"] + label').forEach((l, i) => {
       l.textContent = tt.age[i];
     });
-    // 연령대 값(value)도 변경 (제출 데이터 일관성)
     document.querySelectorAll('input[name="ageGroup"]').forEach((radio, i) => {
       radio.value = tt.age[i];
     });
@@ -327,24 +376,19 @@ function initLanguageSwitcher() {
     document.querySelectorAll('input[name="transport"] + label').forEach((l, i) => {
       l.textContent = tt.transport[i];
     });
-    // 교통수단 값(value)도 변경
     document.querySelectorAll('input[name="transport"]').forEach((radio, i) => {
       radio.value = tt.transport[i];
     });
 
     // 입금완료
     document.querySelector('label[for="paidYes"]').textContent = tt.payment;
-    document.getElementById('paidYes').value = tt.payment; // 값도 변경
+    document.getElementById('paidYes').value = tt.payment;
 
     // 복사버튼
     document.getElementById("copyAccountBtn").textContent = tt.copy;
 
     // 현재 폼 상태에 따라 교통수단 필드 다시 설정
     const currentTransport = document.querySelector('input[name="transport"]:checked');
-    if (currentTransport) {
-      setTransportFields(currentTransport.value);
-    } else {
-      setTransportFields("");
-    }
+    setTransportFields(currentTransport ? currentTransport.value : "");
   }
 }
