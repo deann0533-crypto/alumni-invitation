@@ -217,8 +217,9 @@ body {
 }
 
 .radio-item input[type="radio"] {
-  margin-right: 8px;
-  flex-shrink: 0;
+  margin: 0;
+  margin-right: 8px;      /* 버튼과 텍스트 사이만 여백 */
+  vertical-align: middle;
 }
 
 .radio-item label {
