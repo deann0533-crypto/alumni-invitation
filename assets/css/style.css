@@ -218,8 +218,8 @@ body {
   font-weight: 400;
   cursor: pointer;
   margin: 0;
-  min-width: 56px;      /* 모든 label에 충분히 넓게 */
-  flex-shrink: 0;       /* 줄어들지 않게 */
+  min-width: 56px;     /* 여기를 조정할 것! */
+  flex-shrink: 0;
   display: inline-block;
 }
 
