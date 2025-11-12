@@ -576,11 +576,9 @@ button,
 a {
   cursor: pointer;
 }
-
-/* 혹시 예전 버전의 hidden이 남아 있을 경우 대비 */
-.hidden {
-  display: none !important;
-  visibility: visible !important; /* ← 터치 차단 방지 */
-  opacity: 1 !important;
-  pointer-events: auto !important;
+/* =========================================================
+   유틸리티 (항상 최하단 유지)
+   ========================================================= */
+/* 요소를 숨기고 레이아웃에서 제거합니다 */.hidden {
+  display: none !important;
 }
