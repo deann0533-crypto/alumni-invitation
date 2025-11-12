@@ -203,26 +203,35 @@ body {
 }
 .form-control:focus { outline: none; border-color: var(--color-primary); }
 
-.radio-group { display: flex; flex-direction: column; gap: 10px; }
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 항목 간 간격 작게 */
+}
+
 .radio-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0;    /* 불필요 간격 없애기 */
+  min-height: 28px;    /* 너무 붙지 않게만 설정, 조절 가능 */
 }
+
 .radio-item input[type="radio"] {
   width: 18px;
   height: 18px;
   accent-color: var(--color-primary);
-  margin-right: 8px; /* 라디오 버튼과 텍스트 사이 간격 */
+  margin-right: 8px;
 }
+
 .radio-item label {
   font-size: 14px;
   cursor: pointer;
-  margin: 0; /* 불필요 여백 제거 */
+  margin: 0;
 }
+
 .radio-item .form-hint {
   display: inline;
-  margin-left: 8px; /* 설명 텍스트와 라벨 사이 적당한 간격 */
+  margin-left: 8px;
   font-size: 13px;
   color: #777;
 }
