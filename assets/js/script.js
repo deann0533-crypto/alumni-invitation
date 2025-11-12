@@ -1,6 +1,6 @@
 // =========================================================
 // Iowa Club Korea 2025 - FINAL VERIFIED BILINGUAL VERSION
-// (Form Label Translation FIXED)
+// (Syntax Error FIXED)
 // =========================================================
 
 let currentLang = "ko";
@@ -177,7 +177,7 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ 오시는 길",
       mapButton: "📍 지도 앱으로 보기",
       eventInfo: "📅 행사 정보",
-      eventDetails: { // (정렬 문제 수정 완료)
+      eventDetails: {
         labels: ["일시", "장소", "주소", "회비", "문의"],
         values: [
           "2025년 12월 12일 (금) 오후 6시 30분 ~ 9시 30분",
@@ -189,7 +189,6 @@ function initLanguageSwitcher() {
       },
       rsvp: "📋 참석 신청",
       submitBtn: "참석 신청하기",
-      // [신규 추가] 폼 라벨
       formLabels: {
         name: "이름 *",
         year: "졸업년도 *",
@@ -237,19 +236,18 @@ function initLanguageSwitcher() {
       mapSection: "🗺️ Directions",
       mapButton: "📍 View in Map App",
       eventInfo: "📅 Event Information",
-      eventDetails: { // (정렬 문제 수정 완료)
+      eventDetails: {
         labels: ["Date & Time", "Venue", "Address", "Fee", "Contact"],
         values: [
           "Dec 12, 2025 (Fri) · 6:30–9:30 PM",
           `Switch22, Tower 2, Parc.1, Yeouido<div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)</div>`,
-G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+          "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul", // <-- 'G' 오타 수정됨
           "₩50,000 per person",
-          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:0D1026786495">010-2678-6495</a>)`
+          `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)` // <-- 'D' 오타 수정됨
         ]
       },
       rsvp: "📋 RSVP",
       submitBtn: "Submit RSVP",
-      // [신규 추가] 폼 라벨
       formLabels: {
         name: "Name *",
         year: "Graduation Year *",
@@ -301,7 +299,7 @@ G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
     })
   );
 
-  // 💡 언어 설정 함수 (라벨 번역 기능 추가됨)
+  // 💡 언어 설정 함수
   function setLang(tt) {
     // 초대문
     document.getElementById("invitationText")?.replaceChildren();
@@ -318,7 +316,7 @@ G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
     const guide = document.querySelector(".transport-guide");
     if (guide) guide.innerHTML = tt.transportGuideHTML;
 
-    // 행사 정보 상세 내용 (정렬 수정 완료)
+    // 행사 정보 상세 내용
     const infoItems = document.querySelectorAll(".event-info .info-item");
     if (tt.eventDetails && infoItems.length >= tt.eventDetails.labels.length) {
       infoItems.forEach((item, index) => {
@@ -329,7 +327,7 @@ G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
       });
     }
 
-    // [신규 추가] 폼 라벨 번역
+    // 폼 라벨 번역
     const labels = tt.formLabels;
     if (labels) {
       // 1. 'for' 속성으로 찾기
@@ -340,7 +338,8 @@ G         "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
       document.querySelector('label[for="phone"]').textContent = labels.phone;
       document.querySelector('label[for="carNumber"]').textContent = labels.carNumber;
       document.querySelector('label[for="transportOther"]').textContent = labels.otherTransport;
-G
+      // <-- 'G' 오타 수정됨
+      
       // 2. 'name' 속성으로 부모에서 찾기 (for가 없는 라벨들)
       const ageLabel = document.querySelector('input[name="ageGroup"]')?.closest('.form-group')?.querySelector('.form-label');
       if (ageLabel) ageLabel.textContent = labels.age;
