@@ -205,42 +205,16 @@ body {
 
 .radio-group { display: flex; flex-direction: column; gap: 10px; }
 .radio-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.radio-item {
-  display: flex;
-  align-items: center;      /* 라디오, 라벨, 힌트 모두 수직 중앙정렬 */
-  gap: 6px;                 /* 간격 통일 */
+  display: block; /* 또는 기본값 (지워도 됨) */
 }
 .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
 .radio-item label { font-size: 14px; cursor: pointer; margin: 0; }
 
 .radio-item .form-hint {
-  display: inline-flex;     /* inline-block → inline-flex 로 교체! */
-  align-items: center;      /* 텍스트 수직정렬 맞추기 */
-  margin: 0;                /* 불필요한 들여쓰기 제거 */
+  display: inline;
+  margin-left: 4px;
   font-size: 13px;
   color: #777;
-  line-height: 1.4;
-}
-/* =========================================================
-   찐찐 마지막 수정: 'Car' 힌트 정렬 (강제 !important)
-   ========================================================= */
-/*
-  !important를 사용하여 다른 모든 CSS 규칙을 덮어쓰고
-  'Car' 힌트의 스타일을 강제로 지정합니다.
-*/
-#carHint {
-  display: inline-block;
-  margin: 0 0 0 6px;
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-  position: relative;
-  top: 0.5px; /* 아주 살짝 올림으로 라벨과 수평 맞춤 */
 }
 .submit-btn {
   width: 100%;
