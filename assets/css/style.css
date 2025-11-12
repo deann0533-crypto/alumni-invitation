@@ -210,21 +210,21 @@ body {
   gap: 6px;
 }
 
-.radio-item input[type="radio"] {
-  margin: 0;            /* 브라우저 기본 여백 제거 */
-  flex-shrink: 0;       /* 라디오 버튼 폭 고정 */
+.radio-item {
+  display: flex;
+  align-items: center;      /* 라디오, 라벨, 힌트 모두 수직 중앙정렬 */
+  gap: 6px;                 /* 간격 통일 */
 }
 .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: var(--color-primary); }
 .radio-item label { font-size: 14px; cursor: pointer; margin: 0; }
 
 .radio-item .form-hint {
-  display: inline-block;
-  margin: 0;
+  display: inline-flex;     /* inline-block → inline-flex 로 교체! */
+  align-items: center;      /* 텍스트 수직정렬 맞추기 */
+  margin: 0;                /* 불필요한 들여쓰기 제거 */
   font-size: 13px;
   color: #777;
   line-height: 1.4;
-  position: relative;
-  top: 0.5px; /* 라벨 기준선과 정렬 */
 }
 /* =========================================================
    찐찐 마지막 수정: 'Car' 힌트 정렬 (강제 !important)
