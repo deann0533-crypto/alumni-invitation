@@ -216,17 +216,20 @@ body {
   color: #777;
   line-height: 1.4;
 }
-/* [수정] 'Car' 힌트가 들여쓰기 되는 문제 수정.
-  (기존의 #car + label + ... 규칙은 HTML 공백에 취약하여 삭제)
-  #carHint ID로 직접 지정하여 인라인(inline)으로 붙입니다.
+/* =========================================================
+   찐 마지막 수정: 'Car' 힌트 정렬 최종본
+   ========================================================= */
+/*
+   #carHint 힌트가 줄바꿈되고 들여쓰기되는 모든 문제를
+   이 ID 규칙으로 덮어씁니다.
 */
 #carHint {
-  display: inline;
-  margin-left: 1px;
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-  vertical-align: middle;
+  display: inline;         /* 1. 같은 줄에 배치 */
+  margin-left: 5px;       /* 2. 'Car' 라벨과 5px 간격 (적당한 거리) */
+  margin-top: 0;           /* 3. (중요) 기존 margin-top: 4px를 무효화 */
+  vertical-align: middle;  /* 4. 라벨 텍스트와 세로 중앙 정렬 */
+  font-size: 13px;         /* (기존 스타일 유지) */
+  color: #777;            /* (기존 스타일 유지) */
 }
 .submit-btn {
   width: 100%;
