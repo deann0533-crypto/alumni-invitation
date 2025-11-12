@@ -533,3 +533,21 @@ body {
     z-index: 1;                    /* 배너와 시각적으로 분리 */
   }
 }
+.lang-switch {
+  text-align: right;
+  margin: 12px 20px 0 0;
+}
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-left: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.lang-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
