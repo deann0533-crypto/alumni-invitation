@@ -282,3 +282,56 @@ function initLanguageSwitcher() {
     document.getElementById("copyAccountBtn").textContent = tt.copy;
   }
 }
+// 행사 정보 (Event Info) 상세 내용 번역
+const infoItems = document.querySelectorAll(".event-info .info-item");
+
+if (currentLang === "en" && infoItems.length >= 5) {
+  // 영어 버전
+  infoItems[0].querySelector(".info-label").textContent = "Date & Time";
+  infoItems[0].querySelector(".info-value").innerHTML =
+    "Dec 12, 2025 (Fri) · 6:30–9:30 PM";
+
+  infoItems[1].querySelector(".info-label").textContent = "Venue";
+  infoItems[1].querySelector(".info-value").innerHTML = `
+    Switch22, Tower 2, Parc.1, Yeouido
+    <div class="event-info-note">
+      Please follow the Iowa Club staff’s guidance at the Tower 2 elevator lobby. (B1 entry not allowed)
+    </div>`;
+
+  infoItems[2].querySelector(".info-label").textContent = "Address";
+  infoItems[2].querySelector(".info-value").innerHTML =
+    "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul";
+
+  infoItems[3].querySelector(".info-label").textContent = "Fee";
+  infoItems[3].querySelector(".info-value").innerHTML =
+    "₩50,000 per person";
+
+  infoItems[4].querySelector(".info-label").textContent = "Contact";
+  infoItems[4].querySelector(".info-value").innerHTML = `
+    Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>
+    Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)`;
+} else if (currentLang === "ko" && infoItems.length >= 5) {
+  // 한국어로 복원
+  infoItems[0].querySelector(".info-label").textContent = "일시";
+  infoItems[0].querySelector(".info-value").innerHTML =
+    "2025년 12월 12일 (금) 오후 6시 30분 ~ 9시 30분";
+
+  infoItems[1].querySelector(".info-label").textContent = "장소";
+  infoItems[1].querySelector(".info-value").innerHTML = `
+    여의도 파크원 타워2 스위치22
+    <div class="event-info-note">
+      타워2 1층 저층부 엘리베이터 앞 아이오와 동문회 행사 진행원의 안내를 받아 입장 (지하 1층은 입장 불가)
+    </div>`;
+
+  infoItems[2].querySelector(".info-label").textContent = "주소";
+  infoItems[2].querySelector(".info-value").innerHTML =
+    "서울특별시 영등포구 여의대로 108 파크원 타워2 22층";
+
+  infoItems[3].querySelector(".info-label").textContent = "회비";
+  infoItems[3].querySelector(".info-value").innerHTML = "1인 50,000원";
+
+  infoItems[4].querySelector(".info-label").textContent = "문의";
+  infoItems[4].querySelector(".info-value").innerHTML = `
+    이환석 (<a href="tel:01089674981">010-8967-4981</a>)<br/>
+    문정호 (<a href="tel:01026786495">010-2678-6495</a>)`;
+}
