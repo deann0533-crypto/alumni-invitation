@@ -1,17 +1,20 @@
 // =========================================================
-// Iowa Club Korea 2025 - Main Script (Full + Multilingual)
+// Iowa Club Korea 2025 - Main Script (Full bilingual version)
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 지도 버튼
   const openMapBtn = document.getElementById("openMapBtn");
   openMapBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     openMap();
   });
 
+  // RSVP 폼 제출
   const form = document.getElementById("rsvp-form");
   form?.addEventListener("submit", submitRSVP);
 
+  // 계좌번호 복사 버튼
   const copyBtn = document.getElementById("copyAccountBtn");
   copyBtn?.addEventListener("click", async () => {
     const account =
@@ -48,12 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 초기 숨김 처리
   setTransportFields("");
+  // 언어 스위치 활성화
   initLanguageSwitcher();
 });
 
 // =========================================================
-// 교통수단 선택 시 입력칸 토글
+// 교통수단 선택 토글
 // =========================================================
 function setTransportFields(value) {
   const carGroup = document.getElementById("carNumberGroup");
@@ -75,7 +80,7 @@ document.addEventListener("change", (e) => {
 });
 
 // =========================================================
-// 지도 앱 선택 모달
+// 지도 모달
 // =========================================================
 function openMap() {
   const modal = document.getElementById("mapModal");
@@ -109,7 +114,7 @@ function openMap() {
 }
 
 // =========================================================
-// RSVP 제출 처리 (Google Form 전송)
+// RSVP 제출 (Google Form)
 // =========================================================
 function submitRSVP(event) {
   event.preventDefault();
@@ -169,6 +174,9 @@ function submitRSVP(event) {
       form.reset();
       setTransportFields("");
       const msg = document.getElementById("successMessage");
+      msg.textContent = currentLang === "en"
+        ? "✅ Your RSVP has been submitted. Thank you!"
+        : "✅ 신청이 완료되었습니다. 감사합니다!";
       msg?.classList.add("show");
       setTimeout(() => msg?.classList.remove("show"), 3000);
     })
@@ -181,16 +189,18 @@ function submitRSVP(event) {
 // =========================================================
 // 언어 전환 (한국어 / 영어)
 // =========================================================
+let currentLang = "ko";
+
 function initLanguageSwitcher() {
   const translations = {
     ko: {
       invitation: `<p><strong>Hawkeyes: Past, Present, and Future</strong></p>
-        <br/>
-        <p>한 해를 돌아보며, 함께 웃고 추억하는 시간.</p>
-        <br/>
-        <p>Hawkeyes 동문들과 함께하는 이 밤이 올해의 가장 따뜻한 순간이 되길 바라며 여러분을 초대합니다.</p>
-        <br/>
-        <p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+        <br/><p>한 해를 돌아보며, 함께 웃고 추억하는 시간.</p>
+        <br/><p>Hawkeyes 동문들과 함께하는 이 밤이 올해의 가장 따뜻한 순간이 되길 바라며 여러분을 초대합니다.</p>
+        <br/><p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+      mapSection: "🗺️ 오시는 길",
+      mapButton: "📍 지도 앱으로 보기",
+      transportGuide: "대중교통 안내",
       eventInfo: "📅 행사 정보",
       date: "일시",
       location: "장소",
@@ -198,28 +208,37 @@ function initLanguageSwitcher() {
       fee: "회비",
       contact: "문의",
       rsvp: "📋 참석 신청",
+      submitBtn: "참석 신청하기",
+      labels: {
+        name: "이름 *",
+        year: "졸업년도 *",
+        age: "연령대 *",
+        major: "전공 *",
+        email: "이메일 *",
+        phone: "연락처 *",
+        payment: "참가비 입금 확인 *",
+        transport: "오시는 경로 *",
+        otherTransport: "기타 교통수단",
+        carNumber: "차량번호"
+      },
       eventDetails: {
         date: "2025년 12월 12일 (금) 오후 6시 30분 ~ 9시 30분",
         location: `여의도 파크원 타워2 스위치22
-          <div class="event-info-note">
-            타워2 1층 저층부 엘리베이터 앞 아이오와 동문회 행사 진행원의 안내를 받아 입장 (지하 1층은 입장 불가)
-          </div>`,
+          <div class="event-info-note">타워2 1층 저층부 엘리베이터 앞 아이오와 동문회 행사 진행원의 안내를 받아 입장 (지하 1층은 입장 불가)</div>`,
         address: "서울특별시 영등포구 여의대로 108 파크원 타워2 22층",
         fee: "1인 50,000원",
-        contact: `이환석 (<a href="tel:01089674981">010-8967-4981</a>)<br/>
-                  문정호 (<a href="tel:01026786495">010-2678-6495</a>)`
+        contact: `이환석 (<a href="tel:01089674981">010-8967-4981</a>)<br/>문정호 (<a href="tel:01026786495">010-2678-6495</a>)`
       }
     },
     en: {
       invitation: `<p><strong>Hawkeyes: Past, Present, and Future</strong></p>
-        <br/>
-        <p>A time to look back on the past, laugh, and reminisce together.</p>
-        <br/>
-        <p>We hope that this night with fellow Hawkeyes will be the warmest moment of the year.</p>
-        <br/>
-        <p>We cordially invite you to join us.</p>
-        <br/>
-        <p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+        <br/><p>A time to look back on the past, laugh, and reminisce together.</p>
+        <br/><p>We hope that this night with fellow Hawkeyes will be the warmest moment of the year.</p>
+        <br/><p>We cordially invite you to join us.</p>
+        <br/><p style="text-align:right;font-weight:600;">Iowa Club Korea</p>`,
+      mapSection: "🗺️ Directions",
+      mapButton: "📍 View in Map App",
+      transportGuide: "Public Transportation",
       eventInfo: "📅 Event Information",
       date: "Date & Time",
       location: "Venue",
@@ -227,16 +246,26 @@ function initLanguageSwitcher() {
       fee: "Fee",
       contact: "Contact",
       rsvp: "📋 RSVP",
+      submitBtn: "Submit RSVP",
+      labels: {
+        name: "Name *",
+        year: "Graduation Year *",
+        age: "Age Group *",
+        major: "Major *",
+        email: "Email *",
+        phone: "Phone Number *",
+        payment: "Payment Confirmation *",
+        transport: "Transportation Method *",
+        otherTransport: "Other Transportation",
+        carNumber: "Vehicle Number"
+      },
       eventDetails: {
         date: "Dec 12, 2025 (Fri), 6:30–9:30 PM",
         location: `Switch22, Tower 2, Parc.1, Yeouido
-          <div class="event-info-note">
-            Please follow the Iowa Club staff’s guidance at the Tower 2 ground-floor elevator lobby. (B1 floor entry not allowed)
-          </div>`,
+          <div class="event-info-note">Please follow the Iowa Club staff’s guidance at the Tower 2 ground-floor elevator lobby. (B1 floor entry not allowed)</div>`,
         address: "22F, Tower 2, Parc.1, 108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
         fee: "₩50,000 per person",
-        contact: `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>
-                  Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)`
+        contact: `Hwanseok Lee (<a href="tel:01089674981">010-8967-4981</a>)<br/>Jungho Moon (<a href="tel:01026786495">010-2678-6495</a>)`
       }
     }
   };
@@ -246,6 +275,7 @@ function initLanguageSwitcher() {
     btn.addEventListener("click", () => {
       btns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+      currentLang = btn.dataset.lang;
       setLanguage(btn.dataset.lang);
     });
   });
@@ -254,7 +284,12 @@ function initLanguageSwitcher() {
     const t = translations[lang];
     if (!t) return;
 
+    // 초대문 & 행사정보
     document.getElementById("invitationText").innerHTML = t.invitation;
+    document.querySelector(".map-section h2").textContent = t.mapSection;
+    document.getElementById("openMapBtn").textContent = t.mapButton;
+    document.querySelector(".transport-guide h3").textContent = t.transportGuide;
+
     document.querySelector(".event-info h2").textContent = t.eventInfo;
     document.querySelector(".rsvp-section h2").textContent = t.rsvp;
 
@@ -273,5 +308,22 @@ function initLanguageSwitcher() {
       values[3].innerHTML = t.eventDetails.fee;
       values[4].innerHTML = t.eventDetails.contact;
     }
+
+    // RSVP 라벨
+    document.querySelector('label[for="name"]').textContent = t.labels.name;
+    document.querySelector('label[for="graduationYear"]').textContent = t.labels.year;
+    document.querySelector('.form-group .form-label:not([for]):nth-of-type(1)').textContent =
+      t.labels.age;
+    document.querySelector('label[for="major"]').textContent = t.labels.major;
+    document.querySelector('label[for="email"]').textContent = t.labels.email;
+    document.querySelector('label[for="phone"]').textContent = t.labels.phone;
+    document.querySelectorAll(".form-group .form-label")[6].textContent = t.labels.payment;
+    document.querySelectorAll(".form-group .form-label")[7].textContent = t.labels.transport;
+    document.querySelector('label[for="transportOther"]').textContent =
+      t.labels.otherTransport;
+    document.querySelector('label[for="carNumber"]').textContent = t.labels.carNumber;
+
+    // 제출 버튼
+    document.querySelector(".submit-btn").textContent = t.submitBtn;
   }
 }
