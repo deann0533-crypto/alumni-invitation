@@ -564,4 +564,23 @@ body {
   color: #fff;
   box-shadow: 0 4px 12px rgba(44, 74, 125, 0.3);
 }
+/* ---------------------------------------------------------
+   모바일 터치 이벤트 인식 보정
+   --------------------------------------------------------- */
+button,
+.lang-btn,
+.map-button,
+.modal-btn,
+.submit-btn,
+.copy-btn,
+a {
+  cursor: pointer;
+}
 
+/* 혹시 예전 버전의 hidden이 남아 있을 경우 대비 */
+.hidden {
+  display: none !important;
+  visibility: visible !important; /* ← 터치 차단 방지 */
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
