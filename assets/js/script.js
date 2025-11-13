@@ -118,7 +118,7 @@ function submitRSVP(e) {
   const transportValue = formData.get("entry.1578977719");
   if (
     (transportValue === "자차" || transportValue === "Car") &&
-    !formData.get("carNumber")
+    !formData.get("entry.1500214709")
   )
     return alert(
       currentLang === "en"
@@ -127,7 +127,7 @@ function submitRSVP(e) {
     );
   if (
     (transportValue === "기타" || transportValue === "Other") &&
-    !formData.get("transportOther")
+    !formData.get("entry.659569829")
   )
     return alert(
       currentLang === "en"
