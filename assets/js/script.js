@@ -63,7 +63,7 @@ function setTransportFields(value) {
 }
 
 document.addEventListener("change", (e) => {
-  if (e.target.name === "transport") setTransportFields(e.target.value);
+  if (e.target.name === "entry.1578977719") setTransportFields(e.target.value);
 });
 
 // =========================================================
@@ -98,14 +98,14 @@ function submitRSVP(e) {
   const formData = new FormData(form);
 
   const required = [
-    "name",
-    "graduationYear",
-    "ageGroup",
-    "major",
-    "email",
-    "phone",
-    "payment",
-    "transport"
+  "entry.1776982355",
+  "entry.1355659894",
+  "entry.1130149190",
+  "entry.1725897632",
+  "entry.907944483",
+  "entry.384771722",
+  "entry.148829751",
+  "entry.1578977719",
   ];
   for (const f of required)
     if (!formData.get(f))
@@ -342,13 +342,13 @@ function initLanguageSwitcher() {
       document.querySelector('label[for="transportOther"]').textContent = labels.otherTransport;
       
       // 2. 'name' 속성으로 부모에서 찾기 (for가 없는 라벨들)
-      const ageLabel = document.querySelector('input[name="ageGroup"]')?.closest('.form-group')?.querySelector('.form-label');
+      const ageLabel = document.querySelector('input[name="entry.1130149190"]')?.closest('.form-group')?.querySelector('.form-label');
       if (ageLabel) ageLabel.textContent = labels.age;
       
-      const paymentLabel = document.querySelector('input[name="payment"]')?.closest('.form-group')?.querySelector('.form-label');
+      const paymentLabel = document.querySelector('input[name="entry.148829751"]')?.closest('.form-group')?.querySelector('.form-label');
       if (paymentLabel) paymentLabel.textContent = labels.payment;
       
-      const transportLabel = document.querySelector('input[name="transport"]')?.closest('.form-group')?.querySelector('.form-label');
+      const transportLabel = document.querySelector('input[name="entry.1578977719"]')?.closest('.form-group')?.querySelector('.form-label');
       if (transportLabel) transportLabel.textContent = labels.transport;
 
       // 3. ID로 찾기 (계좌 및 힌트)
@@ -368,18 +368,18 @@ function initLanguageSwitcher() {
     });
 
     // 연령대
-    document.querySelectorAll('input[name="ageGroup"] + label').forEach((l, i) => {
+    document.querySelectorAll('input[name="entry.1130149190"] + label').forEach((l, i) => {
       l.textContent = tt.age[i];
     });
-    document.querySelectorAll('input[name="ageGroup"]').forEach((radio, i) => {
+    document.querySelectorAll('input[name="entry.1130149190"]').forEach((radio, i) => {
       radio.value = tt.age[i];
     });
 
     // 교통수단
-    document.querySelectorAll('input[name="transport"] + label').forEach((l, i) => {
+    document.querySelectorAll('input[name="entry.1578977719"] + label').forEach((l, i) => {
       l.textContent = tt.transport[i];
     });
-    document.querySelectorAll('input[name="transport"]').forEach((radio, i) => {
+    document.querySelectorAll('input[name="entry.1578977719"]').forEach((radio, i) => {
       radio.value = tt.transport[i];
     });
 
@@ -391,7 +391,7 @@ function initLanguageSwitcher() {
     document.getElementById("copyAccountBtn").textContent = tt.copy;
 
     // 현재 폼 상태에 따라 교통수단 필드 다시 설정
-    const currentTransport = document.querySelector('input[name="transport"]:checked');
+    const currentTransport = document.querySelector('input[name="entry.1578977719"]:checked');
     setTransportFields(currentTransport ? currentTransport.value : "");
   }
 }
