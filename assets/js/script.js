@@ -366,26 +366,9 @@ function initLanguageSwitcher() {
       const el = document.getElementById(id);
       if (el) el.placeholder = tt.placeholders[keys[i]];
     });
-
-    // 연령대
-    document.querySelectorAll('input[name="entry.1130149190"] + label').forEach((l, i) => {
-      l.textContent = tt.age[i];
-    });
-    document.querySelectorAll('input[name="entry.1130149190"]').forEach((radio, i) => {
-      radio.value = tt.age[i];
-    });
-
-    // 교통수단
-    document.querySelectorAll('input[name="entry.1578977719"] + label').forEach((l, i) => {
-      l.textContent = tt.transport[i];
-    });
-    document.querySelectorAll('input[name="entry.1578977719"]').forEach((radio, i) => {
-      radio.value = tt.transport[i];
-    });
-
+    
     // 입금완료
     document.querySelector('label[for="paidYes"]').textContent = tt.payment;
-    document.getElementById('paidYes').value = tt.payment;
 
     // 복사버튼
     document.getElementById("copyAccountBtn").textContent = tt.copy;
