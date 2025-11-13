@@ -115,7 +115,7 @@ function submitRSVP(e) {
           : "모든 필수 입력칸을 정확히 채워주세요."
       );
 
-  const transportValue = formData.get("transport");
+  const transportValue = formData.get("entry.1578977719");
   if (
     (transportValue === "자차" || transportValue === "Car") &&
     !formData.get("carNumber")
@@ -135,8 +135,8 @@ function submitRSVP(e) {
         : "기타 교통수단을 입력해 주세요."
     );
   if (
-    formData.get("payment") !== "입금 완료" &&
-    formData.get("payment") !== "Payment Completed"
+    formData.get("entry.148829751") !== "입금 완료" &&
+    formData.get("entry.148829751") !== "Payment Completed"
   )
     return alert(
       currentLang === "en"
