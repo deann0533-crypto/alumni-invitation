@@ -223,8 +223,7 @@ function initLanguageSwitcher() {
       transport: ["대중교통", "자차", "기타"],
       payment: "입금 완료",
       copy: "복사",
-      transportGuideHTML: `
-        <h3>대중교통 안내</h3>
+      transportGuideHTML: `<h3>교통 안내</h3>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚇</span><strong>지하철</strong></div><div class="transport-desc"><p><strong>5, 9호선 여의도역</strong> 3번 출구, IFC몰 연결통로 이용, 도보 15분</p><p><strong>5호선 여의나루역</strong> 1번 출구에서 도보 10분</p></div></div>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚌</span><strong>버스</strong></div><div class="transport-desc"><p><strong>여의도환승센터</strong> 하차 (도보 5분)</p><p class="bus-numbers">160, 260, 261, 262, 360, 461, 600, 503, 753 등</p></div></div>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚗</span><strong>자차</strong></div><div class="transport-desc"><p>더현대서울 지하 주차장 이용</p><p class="parking-info">참석자에 한해 <strong>주차 할인</strong> 지원<br/>(차량번호 사전 등록 필수)</p></div></div>`
@@ -283,8 +282,7 @@ function initLanguageSwitcher() {
       transport: ["Public Transport", "Car", "Other"],
       payment: "Payment Completed",
       copy: "Copy",
-      transportGuideHTML: `
-        <h3>Transportation</h3>
+      transportGuideHTML: `<h3>Transportation</h3>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚇</span><strong>Subway</strong></div><div class="transport-desc"><p><strong>Yeouido Station (Lines 5 & 9)</strong> Exit 3 – 15 min walk via IFC Mall</p><p><strong>Yeouinaru Station (Line 5)</strong> Exit 1 – 10 min walk</p></div></div>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚌</span><strong>Bus</strong></div><div class="transport-desc"><p><strong>Yeouido Transfer Center</strong> stop (5-min walk)</p><p class="bus-numbers">160, 260, 261, 262, 360, 461, 600, 503, 753</p></div></div>
         <div class="transport-item"><div class="transport-title"><span class="icon">🚗</span><strong>Car</strong></div><div class="transport-desc"><p>Use The Hyundai Seoul underground parking</p><p class="parking-info">Parking discount for attendees<br/>(Vehicle registration required)</p></div></div>`
