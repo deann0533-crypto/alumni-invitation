@@ -369,12 +369,18 @@ function initLanguageSwitcher() {
     
     // 입금완료
     document.querySelector('label[for="paidYes"]').textContent = tt.payment;
-
+  
     // 복사버튼
     document.getElementById("copyAccountBtn").textContent = tt.copy;
 
     // 현재 폼 상태에 따라 교통수단 필드 다시 설정
     const currentTransport = document.querySelector('input[name="entry.1578977719"]:checked');
     setTransportFields(currentTransport ? currentTransport.value : "");
+
+    const ageOptions = document.querySelectorAll('input[name="entry.1130149190"]');
+ageOptions.forEach((opt, idx) => {
+  const lb = document.querySelector(`label[for="${opt.id}"]`);
+  if (lb) lb.textContent = tt.age[idx];
+});
   }
 }
