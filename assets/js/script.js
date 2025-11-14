@@ -272,13 +272,13 @@ function initLanguageSwitcher() {
         other: "Please enter your transportation method"
       },
       age: [
-        "Age 20–24",
-        "Age 25–29",
-        "Age 30–34",
-        "Age 35–39",
-        "Age 40–44",
-        "Age 45–49",
-        "Age 50+"
+        "20s",
+        "30s",
+        "40s",
+        "50s",
+        "60s",
+        "70s",
+        "80s and above"
       ],
       transport: ["Public Transport", "Car", "Other"],
       payment: "Payment Completed",
